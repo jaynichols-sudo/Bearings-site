@@ -1,0 +1,474 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Bearings: know where you stand with everyone you know</title>
+<meta name="description" content="Bearings turns your LinkedIn connections into a private map of your network: who is waiting on you, who just changed jobs, and your warmest way into any agency or company. No account, no server.">
+<meta name="theme-color" content="#0D0A17">
+<meta property="og:title" content="Bearings: know where you stand with everyone you know">
+<meta property="og:description" content="A private map of your professional network for iPhone, iPad, Mac, Apple Watch and Android.">
+<meta property="og:image" content="https://jaynichols-sudo.github.io/bearings-site/media/og.jpg">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="img/bearings-icon.svg" type="image/svg+xml">
+<link rel="icon" href="img/favicon-64.png" sizes="64x64">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<link rel="preload" href="fonts/newsreader-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/Geist-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav" id="nav">
+  <a class="brand" href="#top" aria-label="Bearings home">
+    <img src="img/bearings-icon.svg" alt="" width="30" height="30">
+    <span>Bearings</span>
+  </a>
+  <nav aria-label="Sections">
+    <a href="#today">Today</a>
+    <a href="#federal">Federal</a>
+    <a href="#socials">Socials</a>
+    <a href="#demo">Live demo</a>
+    <a href="#privacy">Privacy</a>
+  </nav>
+  <a class="btn btn-small" href="#get">Get Bearings</a>
+</header>
+
+<main id="main">
+
+<!-- HERO: the live compass -->
+<section class="hero night" id="top" aria-labelledby="hero-title">
+  <div class="hero-sky" aria-hidden="true"></div>
+  <div class="hero-inner">
+    <div class="hero-copy">
+      <h1 id="hero-title">Know where you stand with everyone you know.</h1>
+      <p class="lede">Bearings turns your LinkedIn connections into a private map of your network: who’s waiting on you, who just changed jobs, and your warmest way into any agency or company.</p>
+      <div class="cta-row">
+        <a class="btn" href="#get">Get Bearings</a>
+        <a class="btn btn-ghost" href="#demo">Try the live demo</a>
+      </div>
+      <p class="fine">For iPhone, iPad, Mac, Apple Watch and Android. No account. No Bearings server.</p>
+    </div>
+    <figure class="compass-wrap">
+      <canvas id="compass" role="img" aria-label="A compass of a sample network of 680 people, sorted by sector around the rim and by closeness from the center out."></canvas>
+      <div class="lens-tip" id="lensTip" hidden></div>
+      <figcaption class="compass-cap">
+        <span id="compassCount">680 people</span>, by sector around the rim and closeness from the center. Glowing dots need you. <span class="hint-pointer">Move across it to look closer.</span><span class="hint-touch">Touch and drag to look closer.</span>
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- TODAY -->
+<section class="chapter paper" id="today" aria-labelledby="today-title">
+  <div class="wrap split">
+    <div class="copy">
+      <h2 id="today-title">Five people a week, one at a time.</h2>
+      <p>Every Monday, Bearings picks the few people worth your time: who wrote last and is waiting on you, who just started a new role, who you used to talk to and has gone quiet.</p>
+      <p>Each one comes with the reason, what you last talked about and a note already drafted. One tap to write it, or push it to later. Five, and you’re done.</p>
+      <div class="five" id="five" aria-live="polite">
+        <div class="five-strip" id="fiveStrip" aria-hidden="true"></div>
+        <article class="five-card" id="fiveCard"></article>
+        <p class="five-next" id="fiveNext"></p>
+      </div>
+      <p class="note">This card runs the real Bearings engine on a sample network of made-up people.</p>
+    </div>
+    <div class="device-col">
+      <figure class="phone" data-clip="today">
+        <video muted loop playsinline preload="none" poster="media/clips/today.jpg" aria-label="The Today screen: a person waiting on a reply, a drafted note, then the next person slides in.">
+          <source src="media/clips/today.mp4" type="video/mp4">
+        </video>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- MEMORY -->
+<section class="chapter paper alt" id="memory" aria-labelledby="memory-title">
+  <div class="wrap split flip">
+    <div class="copy">
+      <h2 id="memory-title">It remembers what you talked about.</h2>
+      <p>Open anyone and Bearings tells you where you left off: the last message, who wrote last, the notes from your last meeting, when you last emailed.</p>
+      <ul class="facts">
+        <li><strong>Before a meeting</strong>, your Lock Screen and Apple Watch show the face, the time and the last thing you discussed.</li>
+        <li><strong>Meeting notes</strong> from Plaud, Apple Notes or a reMarkable page land on the right people, and action items become follow-ups.</li>
+        <li><strong>Outlook or Gmail</strong>: Bearings reads only who, when and the subject line, so it knows who emailed and is waiting on you.</li>
+        <li><strong>Keep-in-touch circles</strong>: monthly, quarterly or yearly, with a nudge when someone is overdue.</li>
+      </ul>
+    </div>
+    <div class="device-col">
+      <figure class="phone" data-clip="profile">
+        <video muted loop playsinline preload="none" poster="media/clips/profile.jpg" aria-label="A profile with the last conversation, notes and follow-ups.">
+          <source src="media/clips/profile.mp4" type="video/mp4">
+        </video>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ASK -->
+<section class="chapter paper" id="ask" aria-labelledby="ask-title">
+  <div class="wrap">
+    <div class="ask-head">
+      <h2 id="ask-title">Ask your network a question.</h2>
+      <p>Plain words, real answers. Try one. It runs right here on the sample network, the same way it runs on your phone: nothing is sent anywhere.</p>
+    </div>
+    <div class="ask-grid">
+      <div class="ask-box">
+        <form id="askForm" class="ask-form" role="search">
+          <label class="sr" for="askInput">Ask about the sample network</label>
+          <svg class="ask-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg>
+          <input id="askInput" type="search" autocomplete="off" placeholder="Who’s waiting on me?">
+          <button class="btn btn-small" type="submit">Ask</button>
+        </form>
+        <div class="chips" id="askChips" aria-label="Example questions"></div>
+        <div class="ask-out" id="askOut" aria-live="polite"></div>
+      </div>
+      <div class="ask-side">
+        <figure class="phone phone-sm" data-clip="quicknote">
+          <video muted loop playsinline preload="none" poster="media/clips/quicknote.jpg" aria-label="Quick note: typing what happened, and Bearings finding the person and the follow-up date.">
+            <source src="media/clips/quicknote.mp4" type="video/mp4">
+          </video>
+        </figure>
+        <div>
+          <h3>Or just say what happened.</h3>
+          <p>“Coffee with Jason. He wants the pricing deck by Friday.” Quick note finds Jason, logs the conversation and sets the follow-up. Say it to Siri or press the Action button.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPLORE (night) -->
+<section class="chapter night" id="explore" aria-labelledby="explore-title">
+  <div class="wrap split">
+    <div class="copy">
+      <h2 id="explore-title">Your whole network, at a glance.</h2>
+      <p>The compass puts every person you know on one screen: sectors around the rim, closeness from the center out. Drag the lens across it and names rise to meet your finger.</p>
+      <ul class="facts">
+        <li><strong>Search like you talk</strong>: “navy O-5 and up in cyber” or “contracting officers in Norfolk”.</li>
+        <li><strong>An optional federal and military view</strong> with branch, rank, grade, agency and segment.</li>
+        <li><strong>A map of where your people are</strong>, worked out on your phone.</li>
+        <li><strong>Your year in review</strong>, ready to share.</li>
+      </ul>
+    </div>
+    <div class="device-col duo">
+      <figure class="phone" data-clip="compass-dark">
+        <video muted loop playsinline preload="none" poster="media/clips/compass-dark.jpg" aria-label="The compass in Explore, with the lens dragged across the network.">
+          <source src="media/clips/compass-dark.mp4" type="video/mp4">
+        </video>
+      </figure>
+      <figure class="phone phone-back" data-clip="clusters-dark">
+        <video muted loop playsinline preload="none" poster="media/clips/clusters-dark.jpg" aria-label="Clusters of the network by industry.">
+          <source src="media/clips/clusters-dark.mp4" type="video/mp4">
+        </video>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- FEDERAL -->
+<section class="chapter paper" id="federal" aria-labelledby="fed-title">
+  <div class="wrap">
+    <div class="fed-head">
+      <div>
+        <h2 id="fed-title">See every agency where you don’t know anyone yet.</h2>
+        <p>Bearings matches each person’s employer and title to 160 departments, agencies and commands. Covered means someone senior and someone warm. Thin means one or the other. Everything grey is where you need to connect.</p>
+      </div>
+      <div class="fed-score" id="fedScore" aria-live="polite"></div>
+    </div>
+    <div class="fed-tools" role="group" aria-label="Filter agencies">
+      <div class="seg" id="fedFilter">
+        <button type="button" data-f="all" aria-pressed="true">All</button>
+        <button type="button" data-f="none" aria-pressed="false">Not connected</button>
+        <button type="button" data-f="thin" aria-pressed="false">Thin</button>
+        <button type="button" data-f="covered" aria-pressed="false">Covered</button>
+      </div>
+      <label class="select">
+        <span class="sr">Focus area</span>
+        <select id="fedFocus">
+          <option value="all">Every focus area</option>
+          <option value="defense">Defense</option>
+          <option value="cyber">Cyber</option>
+          <option value="energy">Energy</option>
+          <option value="water">Water</option>
+          <option value="infrastructure">Infrastructure</option>
+          <option value="transport">Transportation</option>
+          <option value="intel">Intelligence</option>
+        </select>
+      </label>
+    </div>
+    <div class="fed-body">
+      <div class="fed-map" id="fedMap"></div>
+      <aside class="fed-detail" id="fedDetail" aria-live="polite">
+        <p class="muted">Pick any square to see who you know there, and what’s missing.</p>
+      </aside>
+    </div>
+    <div class="fed-foot">
+      <figure class="phone phone-sm" data-clip="federal">
+        <video muted loop playsinline preload="none" poster="media/clips/federal.jpg" aria-label="The federal map in the app, filtered to covered agencies, then gaps.">
+          <source src="media/clips/federal.mp4" type="video/mp4">
+        </video>
+      </figure>
+      <div class="copy">
+        <h3>Then go get the meeting.</h3>
+        <p>Every gap has two buttons: watch the agency, so leadership changes and news reach you, and find a way in through the people you already know.</p>
+        <p>Agencies change their names. An old name still matches, so your 2019 contact at the old office still counts.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WIN THE PURSUIT -->
+<section class="chapter paper alt" id="pursuit" aria-labelledby="pursuit-title">
+  <div class="wrap">
+    <div class="center-head">
+      <h2 id="pursuit-title">Who sits where. Who decides. Who can get you in.</h2>
+      <p>For anyone who sells to a big organization or the government: the org chart you’ve been keeping in your head, finally on paper.</p>
+    </div>
+    <div class="trio">
+      <figure class="trio-item">
+        <div class="phone" data-clip="org">
+          <video muted loop playsinline preload="none" poster="media/clips/org.jpg" aria-label="An org chart for DISA, by level, with the empty seats called out.">
+            <source src="media/clips/org.mp4" type="video/mp4">
+          </video>
+        </div>
+        <figcaption>
+          <h3>Org charts</h3>
+          <p>Everyone you and your team know at a company or agency, by level, with the empty seats called out. Fill them from ZoomInfo or your own file.</p>
+        </figcaption>
+      </figure>
+      <figure class="trio-item">
+        <div class="phone" data-clip="pursuit">
+          <video muted loop playsinline preload="none" poster="media/clips/pursuit.jpg" aria-label="A pursuit with the sponsor, program manager and contracting officer mapped.">
+            <source src="media/clips/pursuit.mp4" type="video/mp4">
+          </video>
+        </div>
+        <figcaption>
+          <h3>Pursuits</h3>
+          <p>Map who decides each bid: sponsor, program manager, contracting officer, security lead. Bearings suggests who fits each seat and your warmest path to them.</p>
+        </figcaption>
+      </figure>
+      <figure class="trio-item">
+        <div class="phone" data-clip="intro">
+          <video muted loop playsinline preload="none" poster="media/clips/intro.jpg" aria-label="Ways in: the best paths into a company, with the intro ask drafted.">
+            <source src="media/clips/intro.mp4" type="video/mp4">
+          </video>
+        </div>
+        <figcaption>
+          <h3>Ways in</h3>
+          <p>Your best paths into any company, ranked by how warm they are, with the intro ask drafted. Track the intro until it happens.</p>
+        </figcaption>
+      </figure>
+    </div>
+    <div class="pills">
+      <p><strong>Team packs</strong> pool networks with teammates to find warm paths, without sharing notes or messages.</p>
+      <p><strong>Moves</strong> shows who is likely to rotate, retire or leave service, so you reconnect in time.</p>
+      <p><strong>Watchlist alerts</strong> bring leadership changes and news for the accounts you follow.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SOCIALS (night) -->
+<section class="chapter night" id="socials" aria-labelledby="socials-title">
+  <div class="wrap split flip">
+    <div class="copy">
+      <h2 id="socials-title">Everyone you know, across every app.</h2>
+      <p>Your LinkedIn people are only part of the picture. Bring in your Facebook, Instagram, Snapchat and TikTok downloads and Bearings matches them up: the colleague who’s also a Facebook friend, the client who follows you on Instagram.</p>
+      <div class="constellation" id="constellation" aria-hidden="true"></div>
+      <p>Each app gives you a file of your own data. Bearings walks you through asking for it, reads it on your phone and keeps nothing else. No social logins, no scraping.</p>
+    </div>
+    <div class="device-col">
+      <figure class="phone" data-clip="socials">
+        <video muted loop playsinline preload="none" poster="media/clips/socials.jpg" aria-label="Across your socials: people matched across LinkedIn, Facebook, Instagram, Snapchat and TikTok.">
+          <source src="media/clips/socials.mp4" type="video/mp4">
+        </video>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- EVENTS & TRAVEL -->
+<section class="chapter paper" id="events" aria-labelledby="events-title">
+  <div class="wrap split">
+    <div class="copy">
+      <h2 id="events-title">Work the room. Then the follow-up.</h2>
+      <p>Heading to a conference? Event mode shows who you know who’s going. Scan badges and business cards, QR codes too, and Bearings builds the follow-up list while you walk the floor.</p>
+      <ul class="facts">
+        <li><strong>Trips from your calendar</strong>, with who you know nearby on your Lock Screen.</li>
+        <li><strong>Arrival alerts</strong>: land in a new city and see who’s there.</li>
+        <li><strong>A brief 30 minutes before</strong> meetings with people you know, written on your device.</li>
+        <li><strong>Pick the calendars</strong> you want, iCloud, Google or Outlook, and leave the rest out.</li>
+      </ul>
+    </div>
+    <div class="device-col duo">
+      <figure class="phone" data-clip="event">
+        <video muted loop playsinline preload="none" poster="media/clips/event.jpg" aria-label="Event mode for a conference: who you know there and who you met.">
+          <source src="media/clips/event.mp4" type="video/mp4">
+        </video>
+      </figure>
+      <figure class="phone phone-back" data-clip="moves">
+        <video muted loop playsinline preload="none" poster="media/clips/moves.jpg" aria-label="Moves: people likely to rotate, retire or leave service.">
+          <source src="media/clips/moves.mp4" type="video/mp4">
+        </video>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- LIVE DEMO -->
+<section class="chapter demo-sec" id="demo" aria-labelledby="demo-title">
+  <div class="wrap split">
+    <div class="copy">
+      <h2 id="demo-title">Take it for a spin.</h2>
+      <p>This is the real app running in your browser on a sample network of 680 made-up people. Tap around: Today, People, Companies, the federal map, the compass. Nothing you do here leaves this page.</p>
+      <p class="muted">The sample is the Android version of the app. The iPhone app looks the way it does in the videos above.</p>
+      <p class="demo-open"><a href="demo/?tab=home" target="_blank" rel="noopener">Open the demo full screen</a></p>
+    </div>
+    <div class="device-col">
+      <div class="phone phone-live" id="livePhone">
+        <button class="live-start" id="liveStart" type="button">
+          <img src="media/shots/phone-home.jpg" alt="" loading="lazy">
+          <span class="btn">Start the demo</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EVERYWHERE -->
+<section class="chapter paper alt" id="everywhere" aria-labelledby="every-title">
+  <div class="wrap">
+    <div class="center-head">
+      <h2 id="every-title">Wherever you are.</h2>
+      <p>iPhone, iPad and Mac stay in step through your own iCloud. Apple Watch shows who you’re about to meet. Widgets, Siri and the Action button get you there in one move. And there’s an Android app too.</p>
+    </div>
+    <div class="pads">
+      <figure class="pad"><img src="media/shots/pad-home.jpg" alt="Bearings on iPad: Today with the daily five and the compass." loading="lazy"></figure>
+      <figure class="pad pad-2"><img src="media/shots/pad-org.jpg" alt="Bearings on iPad: the DISA org chart by office, with the empty seats." loading="lazy"></figure>
+    </div>
+    <ul class="platforms">
+      <li><strong>iPhone</strong><span>The whole app, plus Lock Screen and widgets</span></li>
+      <li><strong>iPad</strong><span>Room to see the org chart and the map side by side</span></li>
+      <li><strong>Mac</strong><span>The same app at your desk, synced</span></li>
+      <li><strong>Apple Watch</strong><span>Who’s next, what you last said, a quick note</span></li>
+      <li><strong>Android</strong><span>Today, people, companies, the federal map</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- PRIVACY (night) -->
+<section class="chapter night" id="privacy" aria-labelledby="privacy-title">
+  <div class="wrap split">
+    <div class="copy">
+      <h2 id="privacy-title">No account. No Bearings server.</h2>
+      <p>Your network is some of the most sensitive data you have. So Bearings never has it. Everything lives on your devices and in your own iCloud. There’s nothing to sign up for and nothing for anyone to breach.</p>
+      <ul class="facts">
+        <li>Contacts, calendar, email headers and location are read on your device and never uploaded.</li>
+        <li>Email: only who, when and the subject. Never the message.</li>
+        <li>Briefs and drafts are written on your device.</li>
+        <li>No ads. No tracking. No analytics.</li>
+      </ul>
+      <p><a class="link-light" href="https://www.jaynichols.net/bearings/privacy.html">Read the privacy policy</a></p>
+    </div>
+    <div class="flow" aria-label="Where your data goes">
+      <svg viewBox="0 0 420 360" role="img" aria-labelledby="flowTitle">
+        <title id="flowTitle">Your LinkedIn export and other files go to your iPhone. Your iPhone syncs only with your own iCloud and your other devices. Bearings has no server in the picture.</title>
+        <defs>
+          <marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#FFB52E"/></marker>
+        </defs>
+        <g class="flow-node"><rect x="20" y="20" width="160" height="64" rx="16"/><text x="100" y="48">Your LinkedIn</text><text x="100" y="68" class="sub">export, email, notes</text></g>
+        <g class="flow-node main"><rect x="130" y="140" width="160" height="80" rx="18"/><text x="210" y="176">Your iPhone</text><text x="210" y="198" class="sub">where Bearings works</text></g>
+        <g class="flow-node"><rect x="240" y="20" width="160" height="64" rx="16"/><text x="320" y="48">Your iCloud</text><text x="320" y="68" class="sub">your account, not ours</text></g>
+        <g class="flow-node"><rect x="130" y="276" width="160" height="64" rx="16"/><text x="210" y="304">iPad, Mac, Watch</text><text x="210" y="324" class="sub">synced through iCloud</text></g>
+        <path class="flow-line" d="M100 84 C100 120 150 120 175 140" marker-end="url(#ah)"/>
+        <path class="flow-line" d="M245 140 C270 120 320 120 320 88" marker-end="url(#ah)" marker-start="url(#ah)"/>
+        <path class="flow-line" d="M210 220 L210 272" marker-end="url(#ah)" marker-start="url(#ah)"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- PLANS -->
+<section class="chapter paper" id="plans" aria-labelledby="plans-title">
+  <div class="wrap">
+    <div class="center-head">
+      <h2 id="plans-title">Free to start. Pro when you’re working a market.</h2>
+    </div>
+    <div class="plans">
+      <div class="plan">
+        <h3>Bearings</h3>
+        <p class="plan-price">Free</p>
+        <ul>
+          <li>The map, the compass and Today’s five</li>
+          <li>Plain-English search and Ask Bearings</li>
+          <li>Memory, notes, follow-ups and reminders</li>
+          <li>Catch Up on new connections and job changes</li>
+          <li>The federal map, org charts and pursuits</li>
+          <li>Across your socials</li>
+          <li>Widgets, Siri and Apple Watch</li>
+        </ul>
+      </div>
+      <div class="plan plan-pro">
+        <h3>Bearings Pro</h3>
+        <p class="plan-price">Monthly, yearly or lifetime</p>
+        <ul>
+          <li>Event mode with badge and card scanning</li>
+          <li>Ways in, with the intro ask drafted</li>
+          <li>Team packs</li>
+          <li>Arrival alerts</li>
+          <li>ZoomInfo and Seamless.AI enrichment</li>
+          <li>Account map PDFs and Salesforce</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GET STARTED -->
+<section class="chapter night get" id="get" aria-labelledby="get-title">
+  <div class="wrap">
+    <div class="center-head">
+      <img class="get-icon" src="img/bearings-icon.svg" alt="" width="96" height="96">
+      <h2 id="get-title">Get your bearings in ten minutes.</h2>
+    </div>
+    <ol class="steps">
+      <li>
+        <h3>Ask LinkedIn for your data</h3>
+        <p>Settings, Data privacy, Get a copy of your data. Tick Connections, Messages and Invitations.</p>
+      </li>
+      <li>
+        <h3>Open the zip in Bearings</h3>
+        <p>LinkedIn emails a link, usually within minutes. Open the file with Bearings. It stays on your phone.</p>
+      </li>
+      <li>
+        <h3>See where you stand</h3>
+        <p>Your compass, your five for the week and your federal map, ready the moment it loads.</p>
+      </li>
+    </ol>
+    <div class="cta-row center">
+      <a class="btn" id="storeLink" href="https://www.jaynichols.net/bearings/index.html">Coming soon to the App Store</a>
+      <a class="btn btn-ghost" href="#demo">Try the live demo</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-inner">
+    <a class="brand" href="#top"><img src="img/bearings-icon.svg" alt="" width="26" height="26"><span>Bearings</span></a>
+    <nav aria-label="Footer">
+      <a href="https://www.jaynichols.net/bearings/privacy.html">Privacy</a>
+      <a href="https://www.jaynichols.net/bearings/support.html">Support</a>
+    </nav>
+    <p class="muted">The people in the demo and videos are made up. LinkedIn, Facebook, Instagram, Snapchat, TikTok, ZoomInfo, Seamless.AI and Salesforce are trademarks of their owners; Bearings isn’t affiliated with them.</p>
+  </div>
+</footer>
+
+<script src="js/engine.js"></script>
+<script src="js/site.js"></script>
+</body>
+</html>
