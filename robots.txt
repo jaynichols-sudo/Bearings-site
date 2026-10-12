@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /demo/
 
-Sitemap: https://jaynichols-sudo.github.io/Bearings-site/sitemap.xml
+Sitemap: https://northfix.app/sitemap.xml
