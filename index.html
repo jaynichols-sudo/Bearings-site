@@ -8,7 +8,6 @@
 <meta name="theme-color" content="#0D0A17">
 <meta property="og:title" content="Bearings: know where you stand with everyone you know">
 <meta property="og:description" content="A private map of your professional network for iPhone, iPad, Mac, Apple Watch and Android.">
-<meta property="og:image" content="https://jaynichols-sudo.github.io/Bearings-site/media/og.jpg">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="img/bearings-icon.svg" type="image/svg+xml">
@@ -16,6 +15,12 @@
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
 <link rel="preload" href="fonts/newsreader-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/Geist-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<!-- BUILD:head -->
+<link rel="canonical" href="https://jaynichols-sudo.github.io/Bearings-site/">
+<meta property="og:url" content="https://jaynichols-sudo.github.io/Bearings-site/">
+<meta property="og:image" content="https://jaynichols-sudo.github.io/Bearings-site/media/og.jpg">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Bearings", "applicationCategory": "BusinessApplication", "operatingSystem": "iOS, iPadOS, macOS, watchOS, Android", "description": "A private map of your professional network: who is waiting on you, who changed jobs, and your warmest way into any agency or company.", "url": "https://jaynichols-sudo.github.io/Bearings-site/", "image": "https://jaynichols-sudo.github.io/Bearings-site/media/og.jpg", "offers": [{"@type": "Offer", "price": "0", "priceCurrency": "USD", "name": "Bearings"}, {"@type": "Offer", "price": "99.99", "priceCurrency": "USD", "name": "Bearings Pro, yearly"}], "author": {"@type": "Person", "name": "Jay Nichols"}}</script>
+<!-- /BUILD:head -->
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -290,6 +295,10 @@
     </div>
     <div class="team-live" id="teamLive" aria-live="polite"></div>
     <p class="note-night">Above: the real Bearings engine with three made-up teammates on the sample network.</p>
+    <div class="cta-row">
+      <a class="btn" href="team.html">Bearings Team and security</a>
+      <a class="btn btn-ghost" href="team.html#faq">Common questions</a>
+    </div>
   </div>
 </section>
 
@@ -391,7 +400,7 @@
         <li>Briefs and drafts are written on your device.</li>
         <li>No ads. No tracking. No analytics.</li>
       </ul>
-      <p><a class="link-light" href="https://www.jaynichols.net/bearings/privacy.html">Read the privacy policy</a></p>
+      <p><a class="link-light" href="privacy.html">Read the privacy policy</a></p>
     </div>
     <div class="flow" aria-label="Where your data goes">
       <svg viewBox="0 0 420 360" role="img" aria-labelledby="flowTitle">
@@ -481,7 +490,7 @@
       </li>
     </ol>
     <div class="cta-row center">
-      <a class="btn" id="storeLink" href="https://www.jaynichols.net/bearings/index.html">Coming soon to the App Store</a>
+      <a class="btn" id="storeLink" href="mailto:jay@jaynichols.net?subject=Tell%20me%20when%20Bearings%20launches">Email me when it launches</a>
       <a class="btn btn-ghost" href="#demo">Try the live demo</a>
     </div>
   </div>
@@ -491,12 +500,15 @@
 
 <footer class="foot">
   <div class="wrap foot-inner">
-    <a class="brand" href="#top"><img src="img/bearings-icon.svg" alt="" width="26" height="26"><span>Bearings</span></a>
+    <a class="brand" href="index.html"><img src="img/bearings-icon.svg" alt="" width="26" height="26"><span>Bearings</span></a>
     <nav aria-label="Footer">
-      <a href="https://www.jaynichols.net/bearings/privacy.html">Privacy</a>
-      <a href="https://www.jaynichols.net/bearings/support.html">Support</a>
+      <a href="team.html">Team</a>
+      <a href="support.html">Support</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="mailto:jay@jaynichols.net">Contact</a>
     </nav>
-    <p class="muted">The people in the demo and videos are made up. LinkedIn, Facebook, Instagram, Snapchat, TikTok, ZoomInfo, Seamless.AI and Salesforce are trademarks of their owners; Bearings isn’t affiliated with them.</p>
+    <p class="muted">The people in the demo and videos are made up. LinkedIn, Facebook, Instagram, Snapchat, TikTok, ZoomInfo, Seamless.AI, Salesforce and Stripe are trademarks of their owners; Bearings isn’t affiliated with them. Bearings is made by Jay Nichols.</p>
   </div>
 </footer>
 

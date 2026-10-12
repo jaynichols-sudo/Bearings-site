@@ -1,0 +1,66 @@
+<p class="lede-doc">Bearings Team pools who your business development or capture team knows, so anyone can see who on the team can get them into an agency or account. It’s built so the Bearings server can’t read any of it.</p>
+
+<div class="cta-row">
+  <a class="btn" href="{{appStoreUrl}}">Start a free team in the app</a>
+  <a class="btn btn-ghost-dark" href="mailto:{{email}}?subject=Bearings%20Team&amp;body=Team%20size%3A%0AWhat%20you%20sell%20and%20to%20whom%3A%0A">Talk to us about Team</a>
+</div>
+<p class="fine-doc">30 days free for up to 5 people. No card needed to start.</p>
+
+<h2 id="what">What your team gets</h2>
+<div class="grid-2">
+  <div class="tile"><h3>Ways in through everyone</h3><p>Ask who on the team knows someone at DISA, how well, and who should make the intro.</p></div>
+  <div class="tile"><h3>The team federal map</h3><p>All 160 departments, agencies and commands, colored by where the team is covered, thin or not connected.</p></div>
+  <div class="tile"><h3>Team pursuits</h3><p>Every pursuit on the team, with which decision-maker seats are filled: sponsor, program manager, contracting officer, security lead.</p></div>
+  <div class="tile"><h3>The team watchlist</h3><p>Everyone’s target accounts in one list, with who watches each one and the warmest path in.</p></div>
+  <div class="tile"><h3>Bearings Pro for everyone</h3><p>Event mode, ways in, arrival alerts, enrichment and Salesforce for every member while they’re on the team.</p></div>
+  <div class="tile"><h3>Admin controls</h3><p>Invite links with roles, uses and expiry. Remove people, change roles, hand over ownership, delete the team.</p></div>
+</div>
+
+<h2 id="security">Security overview</h2>
+<p>Bearings Team is end-to-end encrypted. This section is written for the person who has to approve it.</p>
+
+<h3>How the encryption works</h3>
+<ol>
+  <li>When someone starts a team, their device generates a random 256-bit team key.</li>
+  <li>The key is added to invite links after the <code>#</code>. Browsers and apps never send that part of a link to a server, so the key never reaches ours.</li>
+  <li>Each member’s device encrypts their share with AES-256-GCM before uploading it. The team name and each member’s name and title are encrypted the same way.</li>
+  <li>Teammates' devices download the encrypted shares and decrypt them locally. Decrypted data stays on the device.</li>
+</ol>
+
+<h3>What the team server can and can’t see</h3>
+<table class="doc-table">
+  <thead><tr><th>The server stores</th><th>The server can’t see</th></tr></thead>
+  <tbody>
+    <tr><td>Random team and member IDs</td><td>Your team’s name</td></tr>
+    <tr><td>Each member’s role (owner, admin, member)</td><td>Members' names and titles</td></tr>
+    <tr><td>When each share last changed, and its size</td><td>Who anyone knows, or how well</td></tr>
+    <tr><td>Open invites: role, uses left, expiry</td><td>Pursuits, decision-makers and watchlists</td></tr>
+    <tr><td>Seat count and billing status</td><td>Notes, messages, emails or tags (never shared at all)</td></tr>
+    <tr><td>A log of joins, departures and role changes</td><td>The team key</td></tr>
+  </tbody>
+</table>
+
+<h3>Access and deletion</h3>
+<ul>
+  <li><b>Sign-in.</b> Each member’s device gets its own random token when it joins. The server stores only a SHA-256 hash of it. There are no passwords to leak.</li>
+  <li><b>Removal is immediate.</b> Removing a member revokes their token and deletes their share from the server.</li>
+  <li><b>Deletion is real.</b> Leaving deletes your share. Deleting a team deletes every record about it.</li>
+  <li><b>Hosting.</b> The team server runs on Cloudflare, with its database in eastern North America. Traffic is HTTPS only.</li>
+  <li><b>Everything else stays local.</b> Without a team, nothing in Bearings goes to any Bearings server. There’s no account and no analytics.</li>
+</ul>
+<p>The full technical description, including the encryption format and every server endpoint, is in the <a href="https://github.com/jaynichols-sudo/Network-Order-of-Battle/blob/main/docs/team.md">design document</a>. Security questions: <a href="mailto:{{email}}?subject=Bearings%20Team%20security">{{email}}</a>.</p>
+
+<h2 id="billing">Billing</h2>
+<p>{{teamPriceLine}} Every member gets Bearings Pro while they’re on the team. The owner subscribes and manages seats on the web, from Team in the app. Invoices come from Stripe. When a trial ends without a subscription, the team becomes read-only, and nothing is deleted. See the <a href="terms.html#team">terms</a> for details, including <a href="terms.html#refunds">refunds</a>.</p>
+
+<h2 id="faq">Common questions</h2>
+<h3>Do teammates see my notes or messages?</h3>
+<p>No. A share holds names, titles, employers, LinkedIn links and closeness, plus pursuits and the watchlist. Notes, messages, emails and tags never leave your device.</p>
+<h3>Can someone join without an invite?</h3>
+<p>No. Joining needs both an unexpired invite code and the team key, and both are only in the link an admin sends.</p>
+<h3>What happens if we lose the key?</h3>
+<p>Any admin can make a new invite link, because the key is stored on every member’s device. If every device is lost, the team’s data can’t be recovered by anyone, including us. Members can start a new team and sync again.</p>
+<h3>Does it work on Android?</h3>
+<p>Yes. iPhone, iPad, Mac and Android members can be on the same team.</p>
+<h3>Can we try it before inviting people?</h3>
+<p>Yes. On the sample network in the app, go to You, then Team, and tap Preview with a sample team.</p>
