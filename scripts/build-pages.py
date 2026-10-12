@@ -147,7 +147,7 @@ meta = f'''<!-- BUILD:head -->
 idx = re.sub(r'<!-- BUILD:head -->.*?<!-- /BUILD:head -->', meta, idx, flags=re.S) if '<!-- BUILD:head -->' in idx else idx.replace('<link rel="stylesheet" href="styles.css">', meta + '\n<link rel="stylesheet" href="styles.css">')
 idx = re.sub(r'<meta property="og:image" content="https://[^"]*/media/og\.jpg">\n(?!<script)', '', idx)
 btn = (f'<a class="btn" id="storeLink" href="{html.escape(store)}">Download on the App Store</a>' if store
-       else f'<a class="btn" id="storeLink" href="mailto:{email}?subject=Tell%20me%20when%20Bearings%20launches">Email me when it launches</a>')
+       else f'<a class="btn" id="storeLink" href="mailto:{email}?subject=Tell%20me%20when%20Northfix%20launches">Email me when it launches</a>')
 idx = re.sub(r'<a class="btn" id="storeLink"[^>]*>[^<]*</a>', btn, idx)
 idx = re.sub(r'<footer class="foot">.*?</footer>', FOOTER.format(email=email), idx, flags=re.S)
 idx = idx.replace('href="https://www.jaynichols.net/bearings/privacy.html"', 'href="privacy.html"')

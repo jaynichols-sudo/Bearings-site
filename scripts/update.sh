@@ -15,7 +15,7 @@ git -C "$APP" archive origin/site-media | tar -x -C "$TMP"
 
 mkdir -p "$SITE/media/clips" "$SITE/media/shots"
 # clips the page uses, with seconds to trim from the start (app launch frames)
-TRIM="today:2.5 profile:0.8 ask:37 quicknote:4.2 compass-dark:2.6 year:3 federal:1 org:0.8 pursuit:0.8 intro:1.2 socials:0.8 event:0.8 radar:0.5"
+TRIM="today:2.5 profile:0.8 ask:3.5 quicknote:4.2 compass-dark:2.6 year:3 federal:1 org:0.8 pursuit:0.8 intro:1.2 socials:0.8 event:0.8 radar:0.5"
 for pair in $TRIM; do
   n=${pair%%:*}; ss=${pair##*:}; f="$TMP/clips/$n.mp4"
   [ -f "$f" ] || { echo "missing $n"; continue; }
