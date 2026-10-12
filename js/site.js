@@ -291,45 +291,62 @@
   }
 
   /* ---------- the federal map ---------- */
+  // "Add a sample team" loads three made-up teammates into the engine; the map then counts them too.
+  let teamLoaded = false;
+  const loadTeam = () => { if (!teamLoaded) { call('setTeamShares', call('demoTeamShares') || []); teamLoaded = true; } };
+
   function federal() {
     const map = $('#fedMap'); if (!map || !ready) return;
-    const cov = call('agencyCoverage'); if (!cov) return;
-    const score = $('#fedScore'), detail = $('#fedDetail');
+    const score = $('#fedScore'), detail = $('#fedDetail'), teamBox = $('#fedTeam');
     const COL = {covered: 'var(--good)', thin: 'var(--thin)', none: '#C9C4D6'};
     const LABEL = {covered: 'Covered', thin: 'Thin', none: 'Not connected'};
-    const T = cov.totals, known = T.agencies - T.none;
-    score.innerHTML = `<div><span class="big">${known}</span> <span class="of">of ${T.agencies} agencies and commands where you know someone</span></div>
-      <div class="bar" aria-hidden="true"><i style="width:${T.covered / T.agencies * 100}%;background:var(--good)"></i><i style="width:${T.thin / T.agencies * 100}%;background:var(--thin)"></i></div>
-      <div class="keys"><span style="--c:var(--good)">${T.covered} covered</span><span style="--c:var(--thin)">${T.thin} thin</span><span style="--c:#C9C4D6">${T.none} not connected</span></div>`;
-    const byDept = new Map(cov.depts.map(d => [d.name, []]));
-    cov.rows.forEach(r => { if (!byDept.has(r.dept)) byDept.set(r.dept, []); byDept.get(r.dept).push(r); });
     const rank = {covered: 0, thin: 1, none: 2};
-    map.innerHTML = [...byDept].map(([dept, rows]) => {
-      rows.sort((a, b) => rank[a.status] - rank[b.status] || b.known - a.known);
-      const k = rows.filter(r => r.status !== 'none').length;
-      return `<div class="dept"><h3>${esc(dept)}<small>${k} of ${rows.length}</small></h3><div class="cells">${rows.map(r =>
-        `<button type="button" class="cell ${r.status === 'none' ? '' : r.status}" data-id="${esc(r.id)}" aria-label="${esc(r.name)}: ${LABEL[r.status]}" title="${esc(r.name)}"></button>`).join('')}</div></div>`;
-    }).join('');
-    const rows = new Map(cov.rows.map(r => [r.id, r]));
-    let filter = 'all', focus = 'all';
+    let cov, rows, filter = 'all', focus = 'all', selected = null;
+
+    function render() {
+      const withTeam = !!(teamBox && teamBox.checked);
+      if (withTeam) loadTeam();
+      cov = call('agencyCoverage', withTeam); if (!cov) return;
+      rows = new Map(cov.rows.map(r => [r.id, r]));
+      const T = cov.totals, known = T.agencies - T.none, alone = cov.mine ? T.agencies - cov.mine.none : known;
+      score.innerHTML = `<div><span class="big">${known}</span><span class="of">of ${T.agencies} agencies and commands where ${withTeam ? 'your team knows' : 'you know'} someone${withTeam ? `. You alone: ${alone}.` : ''}</span></div>
+        <div class="bar" aria-hidden="true"><i style="width:${T.covered / T.agencies * 100}%;background:var(--good)"></i><i style="width:${T.thin / T.agencies * 100}%;background:var(--thin)"></i></div>
+        <div class="keys"><span style="--c:var(--good)">${T.covered} covered</span><span style="--c:var(--thin)">${T.thin} thin</span><span style="--c:#C9C4D6">${T.none} not connected</span></div>`;
+      const byDept = new Map(cov.depts.map(d => [d.name, []]));
+      cov.rows.forEach(r => { if (!byDept.has(r.dept)) byDept.set(r.dept, []); byDept.get(r.dept).push(r); });
+      map.innerHTML = [...byDept].map(([dept, list]) => {
+        list.sort((a, b) => rank[a.status] - rank[b.status] || b.known - a.known);
+        const k = list.filter(r => r.status !== 'none').length;
+        return `<div class="dept"><h3>${esc(dept)}<small>${k} of ${list.length}</small></h3><div class="cells">${list.map(r =>
+          `<button type="button" class="cell ${r.status === 'none' ? '' : r.status}${withTeam && r.mine === 'none' && r.status !== 'none' ? ' via-team' : ''}" data-id="${esc(r.id)}" aria-label="${esc(r.name)}: ${LABEL[r.status]}" title="${esc(r.name)}"></button>`).join('')}</div></div>`;
+      }).join('');
+      apply();
+      const keep = selected && rows.get(selected);
+      show(keep || cov.rows.find(r => withTeam ? (r.mine === 'none' && r.status !== 'none') : r.status === 'thin') || cov.rows[0]);
+    }
     function apply() {
       map.querySelectorAll('.cell').forEach(c => {
         const r = rows.get(c.dataset.id);
-        const show = (filter === 'all' || r.status === filter) && (focus === 'all' || r.tags.includes(focus));
-        c.classList.toggle('dim', !show);
+        const on = (filter === 'all' || r.status === filter) && (focus === 'all' || r.tags.includes(focus));
+        c.classList.toggle('dim', !on);
       });
     }
     function show(r) {
+      if (!r) return;
+      selected = r.id;
       map.querySelectorAll('.cell.sel').forEach(c => c.classList.remove('sel'));
       const c = map.querySelector(`[data-id="${r.id}"]`); if (c) c.classList.add('sel');
       const best = r.best.map(P).filter(Boolean);
+      const team = (teamBox && teamBox.checked && r.teamBest) || [];
       const what = r.status === 'none' ? 'No one you know works here yet. In the app, tap Ways in to find the warmest path, or Watch to follow leadership changes.'
         : r.status === 'thin' ? `${r.gap || 'One side is missing'}. Add a warm or senior contact to cover it.`
-        : 'You know someone senior and someone warm here.';
+        : 'Someone senior and someone warm.';
+      const counts = [r.known ? `${r.known} you know` : '', team.length ? `${r.teamKnown} through your team` : ''].filter(Boolean).join(', ');
       detail.innerHTML = `${r.short && r.short !== r.name ? `<div class="short">${esc(r.short)}</div>` : ''}<h3>${esc(r.name)}</h3>
-        <div class="status" style="--c:${COL[r.status]}">${LABEL[r.status]}${r.known ? `: ${r.known} you know${r.senior ? `, ${r.senior} senior` : ''}` : ''}</div>
+        <div class="status" style="--c:${COL[r.status]}">${LABEL[r.status]}${counts ? `: ${counts}` : ''}</div>
         <p>${esc(what)}</p>
-        ${best.length ? `<ul>${best.map(p => `<li>${avatar(p)}<div><b>${esc(p.name)}</b>${esc(p.p || '')}</div></li>`).join('')}</ul>` : ''}`;
+        ${best.length ? `<ul>${best.map(p => `<li>${avatar(p)}<div><b>${esc(p.name)}</b>${esc(p.p || '')}</div></li>`).join('')}</ul>` : ''}
+        ${team.length ? `<ul class="via">${team.map(t => `<li><span class="av" style="background:#7556E8" aria-hidden="true">${esc(t.name.split(' ').map(w => w[0]).join('').slice(0, 2))}</span><div><b>${esc(t.name)}</b>${esc(t.p || '')}<em>${esc(t.owner)} knows them ${({strong: 'well', warm: 'fairly well', light: 'a little'})[t.b] || 'by name'}</em></div></li>`).join('')}</ul>` : ''}`;
     }
     map.addEventListener('click', e => { const c = e.target.closest('.cell'); if (c) show(rows.get(c.dataset.id)); });
     map.addEventListener('mouseover', e => { const c = e.target.closest('.cell'); if (c && matchMedia('(hover: hover)').matches) show(rows.get(c.dataset.id)); });
@@ -340,8 +357,33 @@
       apply();
     });
     $('#fedFocus').addEventListener('change', e => { focus = e.target.value; apply(); });
-    const first = cov.rows.find(r => r.status === 'thin') || cov.rows[0];
-    if (first) show(first);
+    if (teamBox) teamBox.addEventListener('change', render);
+    render();
+  }
+
+  /* ---------- Bearings Team: the team overview, live ---------- */
+  function teamLive() {
+    const el = $('#teamLive'); if (!el || !ready) return;
+    loadTeam();
+    const o = call('teamOverview'); if (!o) return;
+    const band = b => ({strong: 'well', warm: 'fairly well', light: 'a little'})[b] || 'by name';
+    el.innerHTML = `
+      <div class="team-stats">
+        <div><b>${o.people.toLocaleString()}</b><span>people across the team</span></div>
+        <div><b>${o.agencies.team}<small>/${o.agencies.total}</small></b><span>agencies the team reaches</span></div>
+        <div><b>${o.agencies.mine}</b><span>you reach on your own</span></div>
+        <div><b>${o.members.length + 1}</b><span>people on the team</span></div>
+      </div>
+      <div class="team-cols">
+        <div class="team-card">
+          <h3>Team pursuits</h3>
+          <ul>${o.pursuits.slice(0, 5).map(p => `<li><div><b>${esc(p.name)}</b><span>${esc([p.agency, p.stage, p.value].filter(Boolean).join(', '))}</span><em>${p.mine ? 'Yours' : esc(p.owner)}</em></div><i aria-label="${p.filled} of ${p.roles} seats filled">${p.filled}/${p.roles}</i></li>`).join('')}</ul>
+        </div>
+        <div class="team-card">
+          <h3>Team watchlist</h3>
+          <ul>${o.targets.slice(0, 5).map(t => `<li><div><b>${esc(t.name)}</b><span>Watched by ${esc(t.owners.join(', '))}</span>${t.best.length ? `<em>Best path: ${esc(t.best[0].name)}, ${t.best[0].owner === 'You' ? 'you know them' : esc(t.best[0].owner) + ' knows them'} ${band(t.best[0].b)}</em>` : '<em>No one known yet</em>'}</div><i>${t.people}</i></li>`).join('')}</ul>
+        </div>
+      </div>`;
   }
 
   /* ---------- socials: one person, every app ---------- */
@@ -397,5 +439,5 @@
     });
   }
 
-  compass(); five(); ask(); federal(); constellation(); videos(); demo();
+  compass(); five(); ask(); federal(); teamLive(); constellation(); videos(); demo();
 })();

@@ -29,6 +29,7 @@
   <nav aria-label="Sections">
     <a href="#today">Today</a>
     <a href="#federal">Federal</a>
+    <a href="#team">Team</a>
     <a href="#socials">Socials</a>
     <a href="#demo">Live demo</a>
     <a href="#privacy">Privacy</a>
@@ -186,6 +187,7 @@
         <button type="button" data-f="thin" aria-pressed="false">Thin</button>
         <button type="button" data-f="covered" aria-pressed="false">Covered</button>
       </div>
+      <label class="switch"><input type="checkbox" id="fedTeam"><span>Add a sample team</span></label>
       <label class="select">
         <span class="sr">Focus area</span>
         <select id="fedFocus">
@@ -271,22 +273,23 @@
   </div>
 </section>
 
-<!-- SOCIALS (night) -->
-<section class="chapter night" id="socials" aria-labelledby="socials-title">
-  <div class="wrap split flip">
-    <div class="copy">
-      <h2 id="socials-title">Everyone you know, across every app.</h2>
-      <p>Your LinkedIn people are only part of the picture. Bring in your Facebook, Instagram, Snapchat and TikTok downloads and Bearings matches them up: the colleague who’s also a Facebook friend, the client who follows you on Instagram.</p>
-      <div class="constellation" id="constellation" aria-hidden="true"></div>
-      <p>Each app gives you a file of your own data. Bearings walks you through asking for it, reads it on your phone and keeps nothing else. No social logins, no scraping.</p>
+<!-- TEAM (night) -->
+<section class="chapter night" id="team" aria-labelledby="team-title">
+  <div class="wrap">
+    <div class="team-head">
+      <div>
+        <h2 id="team-title">Your whole team’s network. Still private.</h2>
+        <p>Start a team and everyone pools who they know, their pursuits and their watchlists. Ask who on the team can get you into DISA, and see the federal map for the team, not just for you.</p>
+        <p>Each teammate’s share is encrypted on their phone with a key that lives only in your invite link. The team server stores what it can’t read. Nobody sees anyone’s notes, messages or email, and leaving deletes your share.</p>
+      </div>
+      <ol class="team-steps">
+        <li><b>Start a team</b><span>Name it and you’re the owner. 30 days free for up to 5 people.</span></li>
+        <li><b>Send the invite link</b><span>The team key rides along after the #, so only people with the link can read anything.</span></li>
+        <li><b>Everyone syncs</b><span>Shares update in the background. Everyone on the team gets Bearings Pro.</span></li>
+      </ol>
     </div>
-    <div class="device-col">
-      <figure class="phone" data-clip="socials">
-        <video muted loop playsinline preload="none" poster="media/clips/socials.jpg" aria-label="Across your socials: people matched across LinkedIn, Facebook, Instagram, Snapchat and TikTok.">
-          <source src="media/clips/socials.mp4" type="video/mp4">
-        </video>
-      </figure>
-    </div>
+    <div class="team-live" id="teamLive" aria-live="polite"></div>
+    <p class="note-night">Above: the real Bearings engine with three made-up teammates on the sample network.</p>
   </div>
 </section>
 
@@ -311,6 +314,25 @@
       </figure>
       <figure class="phone phone-back">
         <img src="media/shots/phone-map.jpg" alt="A map of where the people you know are." loading="lazy">
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- SOCIALS (night) -->
+<section class="chapter night" id="socials" aria-labelledby="socials-title">
+  <div class="wrap split flip">
+    <div class="copy">
+      <h2 id="socials-title">Everyone you know, across every app.</h2>
+      <p>Your LinkedIn people are only part of the picture. Bring in your Facebook, Instagram, Snapchat and TikTok downloads and Bearings matches them up: the colleague who’s also a Facebook friend, the client who follows you on Instagram.</p>
+      <div class="constellation" id="constellation" aria-hidden="true"></div>
+      <p>Each app gives you a file of your own data. Bearings walks you through asking for it, reads it on your phone and keeps nothing else. No social logins, no scraping.</p>
+    </div>
+    <div class="device-col">
+      <figure class="phone" data-clip="socials">
+        <video muted loop playsinline preload="none" poster="media/clips/socials.jpg" aria-label="Across your socials: people matched across LinkedIn, Facebook, Instagram, Snapchat and TikTok.">
+          <source src="media/clips/socials.mp4" type="video/mp4">
+        </video>
       </figure>
     </div>
   </div>
@@ -393,7 +415,7 @@
 <section class="chapter paper" id="plans" aria-labelledby="plans-title">
   <div class="wrap">
     <div class="center-head">
-      <h2 id="plans-title">Free to start. Pro when you’re working a market.</h2>
+      <h2 id="plans-title">Free to start. Pro for you. Team for the whole shop.</h2>
     </div>
     <div class="plans">
       <div class="plan">
@@ -419,6 +441,18 @@
           <li>Arrival alerts</li>
           <li>ZoomInfo and Seamless.AI enrichment</li>
           <li>Account map PDFs and Salesforce</li>
+        </ul>
+      </div>
+      <div class="plan">
+        <h3>Bearings Team</h3>
+        <p class="plan-price">Per person, billed yearly. 30 days free for up to 5 people.</p>
+        <ul>
+          <li>Everything in Pro, for everyone on the team</li>
+          <li>Ways in through every teammate’s network</li>
+          <li>The team federal map</li>
+          <li>Team pursuits and the team watchlist</li>
+          <li>Invite links, roles and admin controls</li>
+          <li>End-to-end encrypted: the server can’t read it</li>
         </ul>
       </div>
     </div>
