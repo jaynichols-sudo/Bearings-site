@@ -1,5 +1,5 @@
-// Bearings site. The compass, Today's five, Ask and the federal map all run the real
-// Bearings engine (js/engine.js) on its built-in sample network of made-up people.
+// Northfix site. The compass, Today's five, Ask and the federal map all run the real
+// Northfix engine (js/engine.js) on its built-in sample network of made-up people.
 (() => {
   'use strict';
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -361,7 +361,7 @@
     render();
   }
 
-  /* ---------- Bearings Team: the team overview, live ---------- */
+  /* ---------- Northfix Team: the team overview, live ---------- */
   function teamLive() {
     const el = $('#teamLive'); if (!el || !ready) return;
     loadTeam();
@@ -432,7 +432,7 @@
     const b = $('#liveStart'); if (!b) return;
     b.addEventListener('click', () => {
       const f = document.createElement('iframe');
-      f.src = 'demo/?tab=home'; f.title = 'Bearings live demo on a sample network'; f.loading = 'eager';
+      f.src = 'demo/?tab=home'; f.title = 'Northfix live demo on a sample network'; f.loading = 'eager';
       f.setAttribute('allow', 'clipboard-write');
       b.replaceWith(f);
       f.focus();

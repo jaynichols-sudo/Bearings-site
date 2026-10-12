@@ -22,26 +22,26 @@ today = date.today().isoformat()
 
 PAGES = [
     # file, title, subtitle, description
-    ('team', 'Bearings Team', 'Your whole team’s network. Still private.',
+    ('team', 'Northfix Team', 'Your whole team’s network. Still private.',
      'Pool who your business development team knows, end-to-end encrypted. Ways in through every teammate, the team federal map, team pursuits and the team watchlist.'),
     ('support', 'Support', 'Answers, and how to reach us.',
-     'Help with Bearings: getting your LinkedIn data, syncing, email and calendar, the federal map, Bearings Team, purchases and Android.'),
-    ('privacy', 'Privacy Policy', 'Bearings can’t see your network. Here’s exactly what it touches.',
-     'How Bearings handles your data: on your devices and in your own iCloud, with team shares encrypted before they leave.'),
-    ('terms', 'Terms of Service', 'The agreement for using Bearings.',
-     'Terms of service for the Bearings apps, Bearings Pro, Bearings Team and this website.'),
+     'Help with Northfix: getting your LinkedIn data, syncing, email and calendar, the federal map, Northfix Team, purchases and Android.'),
+    ('privacy', 'Privacy Policy', 'Northfix can’t see your network. Here’s exactly what it touches.',
+     'How Northfix handles your data: on your devices and in your own iCloud, with team shares encrypted before they leave.'),
+    ('terms', 'Terms of Service', 'The agreement for using Northfix.',
+     'Terms of service for the Northfix apps, Northfix Pro, Northfix Team and this website.'),
 ]
 
 def fill(text):
-    line = (f'Bearings Team is {price}.' if price else 'Bearings Team is priced per person and billed yearly, with a 30-day free trial for up to 5 people.')
+    line = (f'Northfix Team is {price}.' if price else 'Northfix Team is priced per person and billed yearly, with a 30-day free trial for up to 5 people.')
     return (text.replace('{{email}}', email)
                 .replace('{{appStoreUrl}}', html.escape(store or 'index.html#get'))
                 .replace('{{teamPriceLine}}', line))
 
 NAV = '''<header class="nav solid" id="nav">
-  <a class="brand" href="index.html" aria-label="Bearings home">
-    <img src="img/bearings-icon.svg" alt="" width="30" height="30">
-    <span>Bearings</span>
+  <a class="brand" href="index.html" aria-label="Northfix home">
+    <img src="img/northfix-icon.svg" alt="" width="30" height="30">
+    <span>Northfix</span>
   </a>
   <nav aria-label="Sections">
     <a href="index.html#today">Features</a>
@@ -49,12 +49,12 @@ NAV = '''<header class="nav solid" id="nav">
     <a href="index.html#demo">Live demo</a>
     <a href="support.html"{support}>Support</a>
   </nav>
-  <a class="btn btn-small" href="index.html#get">Get Bearings</a>
+  <a class="btn btn-small" href="index.html#get">Get Northfix</a>
 </header>'''
 
 FOOTER = '''<footer class="foot">
   <div class="wrap foot-inner">
-    <a class="brand" href="index.html"><img src="img/bearings-icon.svg" alt="" width="26" height="26"><span>Bearings</span></a>
+    <a class="brand" href="index.html"><img src="img/northfix-icon.svg" alt="" width="26" height="26"><span>Northfix</span></a>
     <nav aria-label="Footer">
       <a href="team.html">Team</a>
       <a href="support.html">Support</a>
@@ -62,7 +62,7 @@ FOOTER = '''<footer class="foot">
       <a href="terms.html">Terms</a>
       <a href="mailto:{email}">Contact</a>
     </nav>
-    <p class="muted">The people in the demo and videos are made up. LinkedIn, Facebook, Instagram, Snapchat, TikTok, ZoomInfo, Seamless.AI, Salesforce and Stripe are trademarks of their owners; Bearings isn’t affiliated with them. Bearings is made by Jay Nichols.</p>
+    <p class="muted">The people in the demo and videos are made up. LinkedIn, Facebook, Instagram, Snapchat, TikTok, ZoomInfo, Seamless.AI, Salesforce and Stripe are trademarks of their owners; Northfix isn’t affiliated with them. Northfix is made by Jay Nichols.</p>
   </div>
 </footer>'''
 
@@ -83,7 +83,7 @@ def head(title, desc, path):
 <meta property="og:url" content="{url}">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="img/bearings-icon.svg" type="image/svg+xml">
+<link rel="icon" href="img/northfix-icon.svg" type="image/svg+xml">
 <link rel="icon" href="img/favicon-64.png" sizes="64x64">
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
 <link rel="stylesheet" href="styles.css">
@@ -91,7 +91,7 @@ def head(title, desc, path):
 
 def page(name, title, sub, desc):
     body = fill((ROOT / 'content' / f'{name}.html').read_text())
-    full = title if name == 'team' else f'{title}: Bearings'
+    full = title if name == 'team' else f'{title}: Northfix'
     nav = NAV.format(team=' aria-current="page"' if name == 'team' else '', support=' aria-current="page"' if name == 'support' else '')
     return f'''{head(full, desc, f'{name}.html')}
 <body class="subpage">
@@ -112,11 +112,11 @@ for name, title, sub, desc in PAGES:
     (ROOT / f'{name}.html').write_text(page(name, title, sub, desc))
 
 # 404: GitHub Pages and Cloudflare Pages both serve 404.html for missing paths
-nf = f'''{head('Page not found: Bearings', 'That page isn’t here.', '404.html')}
+nf = f'''{head('Page not found: Northfix', 'That page isn’t here.', '404.html')}
 <body class="subpage">
 {NAV.format(team='', support='')}
 <main id="main">
-<section class="page-hero night lost"><div class="wrap"><h1>Lost your bearings?</h1><p>That page isn’t here. It may have moved, or the link may have a typo.</p>
+<section class="page-hero night lost"><div class="wrap"><h1>Off course?</h1><p>That page isn’t here. It may have moved, or the link may have a typo.</p>
 <div class="cta-row"><a class="btn" href="index.html">Go to the home page</a><a class="btn btn-ghost" href="support.html">Get help</a></div></div></section>
 </main>
 {FOOTER.format(email=email)}
@@ -130,12 +130,12 @@ root_path = '/' if domain else '/' + base.split('/', 3)[3].strip('/') + '/'
 # index.html: everything between the BUILD markers is regenerated
 idx = (ROOT / 'index.html').read_text()
 ld = {
-    '@context': 'https://schema.org', '@type': 'SoftwareApplication', 'name': 'Bearings',
+    '@context': 'https://schema.org', '@type': 'SoftwareApplication', 'name': 'Northfix',
     'applicationCategory': 'BusinessApplication', 'operatingSystem': 'iOS, iPadOS, macOS, watchOS, Android',
     'description': 'A private map of your professional network: who is waiting on you, who changed jobs, and your warmest way into any agency or company.',
     'url': f'{base}/', 'image': f'{base}/media/og.jpg',
-    'offers': [{'@type': 'Offer', 'price': '0', 'priceCurrency': 'USD', 'name': 'Bearings'},
-               {'@type': 'Offer', 'price': '99.99', 'priceCurrency': 'USD', 'name': 'Bearings Pro, yearly'}],
+    'offers': [{'@type': 'Offer', 'price': '0', 'priceCurrency': 'USD', 'name': 'Northfix'},
+               {'@type': 'Offer', 'price': '99.99', 'priceCurrency': 'USD', 'name': 'Northfix Pro, yearly'}],
     'author': {'@type': 'Person', 'name': 'Jay Nichols'},
 }
 meta = f'''<!-- BUILD:head -->
