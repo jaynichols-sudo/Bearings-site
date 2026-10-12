@@ -185,7 +185,7 @@ var TOOLS = [
   {
     name: "person",
     title: "One person\u2019s profile",
-    description: "A profile summary for one person in the user\u2019s network: current role, where they worked before, how close the user is to them, the last message, the user\u2019s own notes and follow-ups. Pass a name (\u201CDan Sitkins\u201D) or a key returned by another tool.",
+    description: "A profile summary for one person in the user\u2019s network: current role, where they worked before, how close the user is to them, the last message, the user\u2019s own notes and follow-ups. Pass a name (\u201CDana Whitfield\u201D) or a key returned by another tool.",
     inputSchema: { type: "object", properties: { name_or_key: str("A person\u2019s name, or the key from another tool\u2019s result.") }, required: ["name_or_key"] }
   },
   {
