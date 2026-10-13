@@ -10,6 +10,7 @@ It's a static site with no cookies, analytics or ads. Hosting is Cloudflare Page
 | --- | --- |
 | Home | `index.html`, `styles.css`, `js/site.js` |
 | Northfix Team, with the security overview | `content/team.html` |
+| Northfix for AI tools | `content/ai.html` |
 | Support | `content/support.html` |
 | Privacy Policy | `content/privacy.html` |
 | Terms of Service | `content/terms.html` |

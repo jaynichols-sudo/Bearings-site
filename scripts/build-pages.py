@@ -27,7 +27,7 @@ PAGES = [
     ('ai', 'Northfix for AI tools', 'Ask your AI about your own network. Answered on your Mac.',
      'Let Claude, Cursor and other AI apps answer questions about your own network: who you know at an agency, your warmest way in, who is waiting on you. Answered on your Mac; nothing goes to Northfix.'),
     ('support', 'Support', 'Answers, and how to reach us.',
-     'Help with Northfix: getting your LinkedIn data, syncing, email and calendar, the federal map, Northfix Team, purchases and Android.'),
+     'Help with Northfix: getting your LinkedIn data, syncing, email, calendar and trips, the federal map, SAM.gov notices, Northfix Team, purchases and Android.'),
     ('privacy', 'Privacy Policy', 'Northfix can’t see your network. Here’s exactly what it touches.',
      'How Northfix handles your data: on your devices and in your own iCloud, with team shares encrypted before they leave.'),
     ('terms', 'Terms of Service', 'The agreement for using Northfix.',
@@ -66,7 +66,7 @@ FOOTER = '''<footer class="foot">
       <a href="terms.html">Terms</a>
       <a href="mailto:{email}">Contact</a>
     </nav>
-    <p class="muted">The people in the demo and videos are made up. LinkedIn, Facebook, Instagram, Snapchat, TikTok, ZoomInfo, Seamless.AI, Salesforce and Stripe are trademarks of their owners; Northfix isn’t affiliated with them. Northfix is made by Jay Nichols.</p>
+    <p class="muted">The people in the demo and videos are made up. LinkedIn, Facebook, Instagram, Snapchat, TikTok, Flighty, TripIt, ZoomInfo, Seamless.AI, Salesforce, HubSpot, Dynamics 365 and Stripe are trademarks of their owners; Northfix isn’t affiliated with them. Northfix is made by Jay Nichols.</p>
   </div>
 </footer>'''
 

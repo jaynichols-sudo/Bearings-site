@@ -34,8 +34,9 @@
   <nav aria-label="Sections">
     <a href="#today">Today</a>
     <a href="#federal">Federal</a>
+    <a href="#opportunities">Opportunities</a>
     <a href="#team">Team</a>
-    <a href="#socials">Socials</a>
+    <a href="#mac">Mac</a>
     <a href="#demo">Live demo</a>
     <a href="#privacy">Privacy</a>
   </nav>
@@ -109,6 +110,34 @@
         <video muted loop playsinline preload="none" poster="media/clips/profile.jpg" aria-label="A profile with the last conversation, notes and follow-ups.">
           <source src="media/clips/profile.mp4" type="video/mp4">
         </video>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- AFTER THE MEETING (night) -->
+<section class="chapter night" id="watch" aria-labelledby="watch-title">
+  <div class="wrap split flip">
+    <div class="copy">
+      <h2 id="watch-title">Two minutes after the meeting, your Watch asks how it went.</h2>
+      <p>Meet with anyone in your network and, two minutes after the calendar says it ended, Northfix taps your wrist: How did it go with Dana? Say it, and it’s done.</p>
+      <ul class="facts">
+        <li><strong>Filed on the right person.</strong> Your reply lands on Dana’s profile, dated and tied to the meeting. Three people in the room? It goes on all three.</li>
+        <li><strong>“Next Friday” sets the follow-up.</strong> Say when, and the reminder is already there.</li>
+        <li><strong>On your iPhone too.</strong> The same question shows up as a notification. Reply without opening the app.</li>
+      </ul>
+    </div>
+    <div class="device-col">
+      <figure class="watch" aria-label="An Apple Watch notification: How did it go with Dana? Then the dictated reply, filed on her profile with the follow-up set.">
+        <div class="watch-body">
+          <div class="watch-screen">
+            <div class="w-app"><img src="img/northfix-icon.svg" alt="" width="16" height="16"><span>Northfix</span><i>now</i></div>
+            <p class="w-q">How did it go with Dana?</p>
+            <p class="w-sub">Reply with a quick note. Northfix files it on their profile.</p>
+            <p class="w-reply">“Went well. She wants the two-site pricing. Follow up next Friday.”</p>
+            <p class="w-filed">Filed on Dana Whitfield. Follow-up next Friday.</p>
+          </div>
+        </div>
       </figure>
     </div>
   </div>
@@ -228,8 +257,29 @@
   </div>
 </section>
 
+<!-- OPPORTUNITIES -->
+<section class="chapter paper alt" id="opportunities" aria-labelledby="opp-title">
+  <div class="wrap split">
+    <div class="copy">
+      <h2 id="opp-title">New at agencies you know.</h2>
+      <p>Paste your own SAM.gov key and Northfix watches for new notices at the agencies where you already know people. Each one comes with who you know there and how well: 20 people at NAVFAC, 17 of them in NAVFAC Atlantic.</p>
+      <ul class="facts">
+        <li><strong>On Today, every morning.</strong> Sources sought, presolicitations and solicitations from the last two weeks, matched to your network and your watchlist.</li>
+        <li><strong>An alert when it matters.</strong> A notice posts at an agency where you know three or more people, and your phone tells you.</li>
+        <li><strong>Your key stays on your device.</strong> Northfix asks SAM.gov directly. No Northfix server in between.</li>
+      </ul>
+      <p class="note">A key is free: SAM.gov, Account Details, Public API Key. <a href="support.html#sam">How to get one</a>.</p>
+    </div>
+    <div class="device-col">
+      <figure class="phone">
+        <img src="media/shots/phone-opportunities.jpg" alt="Opportunities: six SAM.gov notices from the last 14 days at agencies you know, each with how many people you know there." loading="lazy">
+      </figure>
+    </div>
+  </div>
+</section>
+
 <!-- WIN THE PURSUIT -->
-<section class="chapter paper alt" id="pursuit" aria-labelledby="pursuit-title">
+<section class="chapter paper" id="pursuit" aria-labelledby="pursuit-title">
   <div class="wrap">
     <div class="center-head">
       <h2 id="pursuit-title">Who sits where. Who decides. Who can get you in.</h2>
@@ -309,11 +359,16 @@
       <h2 id="events-title">Work the room. Then the follow-up.</h2>
       <p>Heading to a conference? Event mode shows who you know who’s going. Scan badges and business cards, QR codes too, and Northfix builds the follow-up list while you walk the floor.</p>
       <ul class="facts">
-        <li><strong>Trips from your calendar</strong>, with who you know nearby on your Lock Screen.</li>
-        <li><strong>Arrival alerts</strong>: land in a new city and see who’s there.</li>
+        <li><strong>Trips from your calendar, Flighty and TripIt.</strong> A flight becomes a trip in the city you land in, with who you know nearby on your Lock Screen. Paste your TripIt feed link once and trips keep themselves current.</li>
+        <li><strong>The evening before you land</strong>, a heads-up with who’s close by, so there’s still time to set up a coffee.</li>
         <li><strong>A brief 30 minutes before</strong> meetings with people you know, written on your device.</li>
         <li><strong>Pick the calendars</strong> you want, iCloud, Google or Outlook, and leave the rest out.</li>
       </ul>
+      <div class="notif" role="img" aria-label="A notification from Northfix: Landing in San Diego. You land in San Diego tomorrow at 2:10 PM. 6 people you know are within 25 miles.">
+        <img src="img/northfix-icon.svg" alt="" width="36" height="36">
+        <div><b>Landing in San Diego</b><span>You land in San Diego tomorrow at 2:10 PM. 6&nbsp;people you know are within 25&nbsp;miles.</span></div>
+        <i>7:00 PM</i>
+      </div>
     </div>
     <div class="device-col duo">
       <figure class="phone" data-clip="event">
@@ -333,9 +388,9 @@
   <div class="wrap split flip">
     <div class="copy">
       <h2 id="socials-title">Everyone you know, across every app.</h2>
-      <p>Your LinkedIn people are only part of the picture. Bring in your Facebook, Instagram, Snapchat and TikTok downloads and Northfix matches them up: the colleague who’s also a Facebook friend, the client who follows you on Instagram.</p>
+      <p>Your LinkedIn people are only part of the picture. Bring in your Facebook, Instagram, Snapchat and TikTok downloads and Northfix matches them up: the colleague who’s also a Facebook friend, the client who follows you on Instagram, and the people you know only off LinkedIn.</p>
       <div class="constellation" id="constellation" aria-hidden="true"></div>
-      <p>Each app gives you a file of your own data. Northfix walks you through asking for it, reads it on your phone and keeps nothing else. No social logins, no scraping.</p>
+      <p>Each app gives you a file of your own data, HTML or JSON, either works. Northfix walks you through asking for it, reads it on your phone and keeps nothing else. No social logins, no scraping. The people on every one of your apps get a <strong>Connected everywhere</strong> mark: those are your real relationships.</p>
     </div>
     <div class="device-col">
       <figure class="phone" data-clip="socials">
@@ -343,6 +398,28 @@
           <source src="media/clips/socials.mp4" type="video/mp4">
         </video>
       </figure>
+    </div>
+  </div>
+</section>
+
+<!-- CRM AND AI TOOLS -->
+<section class="chapter paper alt" id="connect" aria-labelledby="connect-title">
+  <div class="wrap">
+    <div class="center-head">
+      <h2 id="connect-title">Plays well with the tools you already use.</h2>
+      <p>Straight from your device to theirs. Northfix is never in the middle.</p>
+    </div>
+    <div class="cards">
+      <article class="card">
+        <h3>Send it to your CRM.</h3>
+        <p>Contacts, notes and follow-up tasks go from Northfix to Salesforce, HubSpot or Dynamics 365 with one tap. Sign in to your CRM once; the sign-in stays on your device.</p>
+        <div class="logos" aria-label="Supported CRMs"><span>Salesforce</span><span>HubSpot</span><span>Dynamics 365</span></div>
+      </article>
+      <article class="card">
+        <h3>Ask your AI about your network.</h3>
+        <p>Northfix for AI tools is a small helper that runs on your Mac. Claude, Cursor or another AI app asks it who you know at DISA or who’s waiting on you, and gets the answer from your own network. Nothing goes to Northfix.</p>
+        <p class="card-link"><a href="ai.html">Northfix for AI tools</a></p>
+      </article>
     </div>
   </div>
 </section>
@@ -367,12 +444,40 @@
   </div>
 </section>
 
+<!-- MAC -->
+<section class="chapter paper" id="mac" aria-labelledby="mac-title">
+  <div class="wrap">
+    <div class="center-head">
+      <h2 id="mac-title">At your desk, it’s a desktop app.</h2>
+      <p>Northfix for Mac isn’t the phone app stretched wide. Today is a dashboard that fills the window: your five, the compass, your watchlist and what’s new at agencies you know, all at once.</p>
+    </div>
+    <figure class="mac mac-big">
+      <img src="media/shots/mac-today.jpg" alt="Northfix on Mac: the Today dashboard with the daily five, the compass, the watchlist and new SAM.gov notices side by side." loading="lazy">
+    </figure>
+    <div class="split mac-split">
+      <div class="copy">
+        <h3>Two panes, one sidebar, and the keyboard.</h3>
+        <p>People and Companies open with the list on the left and the person on the right, so you can work down a list without losing your place. A Workspace sidebar keeps Explore, Pursuits, Opportunities and Socials one click away.</p>
+        <ul class="keys-list" aria-label="Keyboard shortcuts">
+          <li><kbd>⌘K</kbd><span>Quick find: anyone, any company, from anywhere</span></li>
+          <li><kbd>⌘1</kbd><em>to</em><kbd>⌘4</kbd><span>Today, People, Companies, You</span></li>
+          <li><kbd>⇧⌘I</kbd><span>Find a way in</span></li>
+          <li><kbd>⇧⌘T</kbd><span>Trips</span></li>
+        </ul>
+      </div>
+      <figure class="mac">
+        <img src="media/shots/mac-profile.jpg" alt="Northfix on Mac: People in two panes, the list on the left and a profile with timeline and details on the right." loading="lazy">
+      </figure>
+    </div>
+  </div>
+</section>
+
 <!-- EVERYWHERE -->
 <section class="chapter paper alt" id="everywhere" aria-labelledby="every-title">
   <div class="wrap">
     <div class="center-head">
       <h2 id="every-title">Wherever you are.</h2>
-      <p>iPhone, iPad and Mac stay in step through your own iCloud. Apple Watch shows who you’re about to meet. Widgets, Siri and the Action button get you there in one move. And there’s an Android app too.</p>
+      <p>iPhone, iPad and Mac stay in step through your own iCloud. Apple Watch shows who you’re about to meet and asks how it went. Widgets, Siri and the Action button get you there in one move. And there’s an Android app too.</p>
     </div>
     <div class="pads">
       <figure class="pad"><img src="media/shots/pad-home.jpg" alt="Northfix on iPad: Today with the daily five and the compass." loading="lazy"></figure>
@@ -381,8 +486,8 @@
     <ul class="platforms">
       <li><strong>iPhone</strong><span>The whole app, plus Lock Screen and widgets</span></li>
       <li><strong>iPad</strong><span>Room to see the org chart and the map side by side</span></li>
-      <li><strong>Mac</strong><span>The same app at your desk, synced</span></li>
-      <li><strong>Apple Watch</strong><span>Who’s next, what you last said, a quick note</span></li>
+      <li><strong>Mac</strong><span>A real desktop app: dashboard, two panes, shortcuts</span></li>
+      <li><strong>Apple Watch</strong><span>Who’s next, how it went, a quick note</span></li>
       <li><strong>Android</strong><span>Today, people, companies, the federal map</span></li>
     </ul>
   </div>
@@ -397,6 +502,7 @@
       <ul class="facts">
         <li>Contacts, calendar, email headers and location are read on your device and never uploaded.</li>
         <li>Email: only who, when and the subject. Never the message.</li>
+        <li>Your SAM.gov key and your CRM sign-in stay on your device. Northfix talks to SAM.gov and your CRM directly.</li>
         <li>Briefs and drafts are written on your device.</li>
         <li>No ads. No tracking. No analytics.</li>
       </ul>
@@ -436,6 +542,7 @@
           <li>Memory, notes, follow-ups and reminders</li>
           <li>Catch Up on new connections and job changes</li>
           <li>The federal map, org charts and pursuits</li>
+          <li>SAM.gov notices matched to your network</li>
           <li>Across your socials</li>
           <li>Widgets, Siri and Apple Watch</li>
         </ul>
@@ -449,12 +556,13 @@
           <li>Team packs</li>
           <li>Arrival alerts</li>
           <li>ZoomInfo and Seamless.AI enrichment</li>
-          <li>Account map PDFs and Salesforce</li>
+          <li>Salesforce, HubSpot and Dynamics 365 sync</li>
+          <li>Account map PDFs</li>
         </ul>
       </div>
       <div class="plan">
         <h3>Northfix Team</h3>
-        <p class="plan-price">Per person, billed yearly. 30 days free for up to 5 people.</p>
+        <p class="plan-price">Per person, billed yearly. 30 days free for up to 5 people. An App Store option for up to 5 seats is coming soon.</p>
         <ul>
           <li>Everything in Pro, for everyone on the team</li>
           <li>Ways in through every teammate’s network</li>
@@ -509,7 +617,7 @@
       <a href="terms.html">Terms</a>
       <a href="mailto:hello@northfix.app">Contact</a>
     </nav>
-    <p class="muted">The people in the demo and videos are made up. LinkedIn, Facebook, Instagram, Snapchat, TikTok, ZoomInfo, Seamless.AI, Salesforce and Stripe are trademarks of their owners; Northfix isn’t affiliated with them. Northfix is made by Jay Nichols.</p>
+    <p class="muted">The people in the demo and videos are made up. LinkedIn, Facebook, Instagram, Snapchat, TikTok, Flighty, TripIt, ZoomInfo, Seamless.AI, Salesforce, HubSpot, Dynamics 365 and Stripe are trademarks of their owners; Northfix isn’t affiliated with them. Northfix is made by Jay Nichols.</p>
   </div>
 </footer>
 
