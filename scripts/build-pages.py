@@ -22,12 +22,6 @@ today = date.today().isoformat()
 
 PAGES = [
     # file, heading, subtitle, page title (for search results and shares), description
-    ('federal', 'Northfix for federal BD and capture', 'Who you know at every agency. Who decides each bid. Who can get you in.',
-     'Northfix for federal BD and capture: agencies, pursuits, recompetes',
-     'A private relationship map for federal BD and capture: coverage across 160 agencies, pursuit seats, recompetes, teaming partners and SAM.gov notices.'),
-    ('pricing', 'Pricing', 'Free to start. Pro for you. Team for the whole shop.',
-     'Northfix pricing: Free, Pro and Team plans',
-     'Northfix is free to start. Pro is $19.99 a month, $99.99 a year or $249.99 once. Team is $49 per person per month, billed yearly, 30 days free.'),
     ('team', 'Northfix Team', 'Your whole team’s network. Still private.',
      'Northfix Team: an encrypted network map for BD and capture teams',
      'Pool who your BD or capture team knows, end-to-end encrypted: ways in through every teammate, the team federal map, pursuits, pipeline and watchlist.'),
@@ -43,6 +37,12 @@ PAGES = [
     ('terms', 'Terms of Service', 'The agreement for using Northfix.',
      'Terms of Service: Northfix',
      'Terms of service for the Northfix apps, Northfix Pro, Northfix Team and this website.'),
+    ('federal', 'Northfix for federal BD and capture', 'Who you know at every agency. Who decides each bid. Who can get you in.',
+     'Northfix for federal BD and capture: agencies, pursuits, recompetes',
+     'A private relationship map for federal BD and capture: coverage across 160 agencies, pursuit seats, recompetes, teaming partners and SAM.gov notices.'),
+    ('pricing', 'Pricing', 'Free to start. Pro for you. Team for the whole shop.',
+     'Northfix pricing: Free, Pro and Team plans',
+     'Northfix is free to start. Pro is $19.99 a month, $99.99 a year or $249.99 once. Team is $49 per person per month, billed yearly, 30 days free.'),
 ]
 # pages in the main nav, in order: (file or home anchor, label)
 NAV_LINKS = [('index.html#today', 'Features'), ('federal', 'Federal'), ('team', 'Team'), ('ai', 'AI tools'),
