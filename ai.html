@@ -3,20 +3,29 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Northfix for AI tools</title>
-<meta name="description" content="Let Claude, Cursor and other AI apps answer questions about your own network: who you know at an agency, your warmest way in, who is waiting on you. Answered on your Mac; nothing goes to Northfix.">
+<title>Northfix for AI tools: connect Claude to your network</title>
+<meta name="description" content="Set up the Northfix connector for Claude Desktop, Cursor and other MCP apps. Ask about your own network. It runs on your Mac; nothing goes to Northfix.">
 <link rel="canonical" href="https://northfix.app/ai.html">
 <meta name="theme-color" content="#0D0A17">
-<meta property="og:title" content="Northfix for AI tools">
-<meta property="og:description" content="Let Claude, Cursor and other AI apps answer questions about your own network: who you know at an agency, your warmest way in, who is waiting on you. Answered on your Mac; nothing goes to Northfix.">
+<meta property="og:site_name" content="Northfix">
+<meta property="og:locale" content="en_US">
+<meta property="og:title" content="Northfix for AI tools: connect Claude to your network">
+<meta property="og:description" content="Set up the Northfix connector for Claude Desktop, Cursor and other MCP apps. Ask about your own network. It runs on your Mac; nothing goes to Northfix.">
 <meta property="og:image" content="https://northfix.app/media/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Northfix: a private map of your professional network.">
 <meta property="og:url" content="https://northfix.app/ai.html">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Northfix for AI tools: connect Claude to your network">
+<meta name="twitter:description" content="Set up the Northfix connector for Claude Desktop, Cursor and other MCP apps. Ask about your own network. It runs on your Mac; nothing goes to Northfix.">
+<meta name="twitter:image" content="https://northfix.app/media/og.jpg">
 <link rel="icon" href="img/northfix-icon.svg" type="image/svg+xml">
 <link rel="icon" href="img/favicon-64.png" sizes="64x64">
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
 <link rel="stylesheet" href="styles.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Northfix", "item": "https://northfix.app/"}, {"@type": "ListItem", "position": 2, "name": "Northfix for AI tools", "item": "https://northfix.app/ai.html"}]}</script>
 </head>
 <body class="subpage">
 <a class="skip" href="#main">Skip to content</a>
@@ -27,8 +36,10 @@
   </a>
   <nav aria-label="Sections">
     <a href="index.html#today">Features</a>
+    <a href="federal.html">Federal</a>
     <a href="team.html">Team</a>
     <a href="ai.html" aria-current="page">AI tools</a>
+    <a href="pricing.html">Pricing</a>
     <a href="index.html#demo">Live demo</a>
     <a href="support.html">Support</a>
   </nav>
@@ -37,7 +48,7 @@
 <main id="main">
 <section class="page-hero night"><div class="wrap"><h1>Northfix for AI tools</h1><p>Ask your AI about your own network. Answered on your Mac.</p></div></section>
 <article class="doc wrap">
-<p class="lede-doc">Ask Claude, Cursor or another AI app about your own network: who you know at an agency, your warmest way in, who is waiting on you. Northfix answers on your Mac, from the network you already have in the app.</p>
+<p class="lede-doc">Ask Claude, Cursor or another AI app about your own network: who you know at an agency, your warmest way in, which contracts are up for recompete. Northfix answers on your Mac, from the network you already have in the app.</p>
 
 <div class="cta-row">
   <a class="btn" href="downloads/northfix.mcpb" download>Download for Claude Desktop</a>
@@ -45,16 +56,104 @@
 </div>
 <p class="fine-doc">For Mac. Needs Northfix on the same Mac, opened once, with iCloud Drive on.</p>
 
-<h2 id="what">What it does</h2>
-<p>Northfix for AI tools is a small helper that runs on your Mac. Your AI app asks it a question, it looks at your network the same way the Northfix app does, and it hands back the answer. Your AI app can then do the rest: draft the intro request, plan your week, prep you for a meeting.</p>
-<div class="grid-2">
-  <div class="tile"><h3>Ways in</h3><p>Who works at a company or agency now, who used to, and who you’re close to in the same sector. Warmest first, with teammates if you’re on a team.</p></div>
-  <div class="tile"><h3>Who’s waiting on you</h3><p>People who wrote last and haven’t heard back, from LinkedIn and email.</p></div>
-  <div class="tile"><h3>This week’s five</h3><p>Five people worth reaching out to this week, each with one plain reason.</p></div>
-  <div class="tile"><h3>Job changes</h3><p>Who started a new role lately, and where they were before.</p></div>
-  <div class="tile"><h3>The federal map</h3><p>Where you’re covered, thin or not connected across 160 departments, agencies and commands.</p></div>
-  <div class="tile"><h3>Pursuits</h3><p>Each bid’s decision-maker seats, who fills them, and who could fill the empty ones.</p></div>
-</div>
+<nav class="toc" aria-label="On this page">
+  <a href="#how">How it works</a>
+  <a href="#setup">Set it up</a>
+  <a href="#tools">What it can do</a>
+  <a href="#examples">Things to ask</a>
+  <a href="#privacy">Privacy</a>
+  <a href="#pro">Free and Pro</a>
+  <a href="#troubleshooting">Troubleshooting</a>
+</nav>
+
+<h2 id="how">How it works</h2>
+<p>Northfix for AI tools is a small helper, called a connector, that runs on your Mac. It speaks MCP, the Model Context Protocol, which Claude Desktop and many other AI apps use to connect to tools.</p>
+<ol>
+  <li>You ask your AI app a question, like “Who do I know at DISA?”</li>
+  <li>The AI app asks the Northfix connector on your Mac.</li>
+  <li>The connector reads your Northfix files on that Mac and works out the answer with the same engine the apps use.</li>
+  <li>It hands back only that answer. Your AI app does the rest: drafts the intro request, plans your week, preps you for the meeting.</li>
+</ol>
+<p>Nothing goes to a Northfix server. There isn’t one in the picture.</p>
+
+<h2 id="setup">Set it up</h2>
+<p>First, open Northfix on your Mac once, with iCloud Drive on, so your network is there. The Mac app is the same Northfix you use on iPhone and iPad.</p>
+
+<h3 id="claude-desktop">Claude Desktop (easiest)</h3>
+<ol>
+  <li><a href="downloads/northfix.mcpb" download>Download northfix.mcpb</a>.</li>
+  <li>Double-click it. Claude Desktop opens and asks to install the Northfix extension.</li>
+  <li>Click Install. Leave the folder setting empty unless your Northfix files are somewhere unusual.</li>
+  <li>Start a new chat and ask “Who do I know at DISA?” The first time, Claude asks whether to allow the Northfix tool. Allow it.</li>
+</ol>
+<p>To turn it off or remove it later, open Claude Desktop’s Settings, then Extensions.</p>
+
+<h3 id="claude-config">Claude Desktop (config file)</h3>
+<p>If you’d rather not use the extension, or your organization manages extensions:</p>
+<ol>
+  <li>Install <a href="https://nodejs.org">Node.js</a> 18 or later if you don’t have it.</li>
+  <li><a href="downloads/northfix-mcp.mjs" download>Download northfix-mcp.mjs</a> and move it somewhere it can stay, such as <code>~/Applications/Northfix/</code>.</li>
+  <li>Open <code>~/Library/Application Support/Claude/claude_desktop_config.json</code> and add:</li>
+</ol>
+<pre><code>{
+  "mcpServers": {
+    "northfix": {
+      "command": "node",
+      "args": ["/Users/you/Applications/Northfix/northfix-mcp.mjs"]
+    }
+  }
+}</code></pre>
+<p>Change <code>/Users/you</code> to your own home folder. Quit and reopen Claude Desktop after saving. If Claude can’t find <code>node</code>, use its full path, such as <code>/opt/homebrew/bin/node</code> or <code>/usr/local/bin/node</code>. Run <code>which node</code> in Terminal to see yours.</p>
+
+<h3 id="other-apps">Cursor and other AI apps</h3>
+<p>Any app that can start a local MCP server works the same way. In Cursor, add the same lines to <code>~/.cursor/mcp.json</code>. In other apps, look for “MCP servers”, “connectors” or “tools” in settings, and add a local server with the command <code>node</code> and the path to <code>northfix-mcp.mjs</code> as its argument.</p>
+<p>Some AI apps only connect to servers on the internet. This one stays on your Mac on purpose, so it needs an app that supports local servers.</p>
+
+<h3 id="options">Options</h3>
+<ul>
+  <li><b>Another folder.</b> Pass <code>--data /path/to/folder</code>, or set <code>NORTHFIX_DATA</code>, to read the network from a folder that holds <code>network.json</code>. By default the connector looks in Northfix’s iCloud Drive folder, then in the app’s own folder for when iCloud is off. macOS may ask once to allow access to the second one.</li>
+  <li><b>Free plan count.</b> <code>NORTHFIX_STATE</code> sets where the free plan’s daily count is kept. The default is <code>~/Library/Application Support/Northfix AI/</code>.</li>
+</ul>
+
+<h2 id="tools">What it can do</h2>
+<p>Your AI app picks the right tool for your question. You don’t need to name them. They’re listed here so you know what’s possible.</p>
+
+<h3>Your network</h3>
+<table class="doc-table fit">
+  <thead><tr><th>Tool</th><th>What it answers</th></tr></thead>
+  <tbody>
+    <tr><td><code>search_people</code></td><td>Plain-English search: “colonels at Fort Liberty”, “who used to be at Leidos”.</td></tr>
+    <tr><td><code>person</code></td><td>One person: role, past roles, how close you are, the last message, your notes and follow-ups.</td></tr>
+    <tr><td><code>ways_in</code></td><td>Your warmest paths into a company or agency: who works there now, who used to, and close contacts in the same sector. Includes teammates if you’re on a team.</td></tr>
+    <tr><td><code>waiting_on_me</code></td><td>People who wrote last and are waiting on your reply, from LinkedIn and email.</td></tr>
+    <tr><td><code>weekly_five</code></td><td>Five people worth reaching out to this week, each with one plain reason.</td></tr>
+    <tr><td><code>who_changed_jobs</code></td><td>Who started a new role lately, and where they were before. The last 90 days unless you say otherwise.</td></tr>
+    <tr><td><code>network_summary</code></td><td>A short overview of your network. Always free.</td></tr>
+  </tbody>
+</table>
+
+<h3>Federal and capture</h3>
+<table class="doc-table fit">
+  <thead><tr><th>Tool</th><th>What it answers</th></tr></thead>
+  <tbody>
+    <tr><td><code>agency_coverage</code></td><td>Where you’re covered, thin or not connected across about 160 departments, agencies and commands.</td></tr>
+    <tr><td><code>pursuits</code></td><td>Your pursuits, with stage, due date, value and seats filled.</td></tr>
+    <tr><td><code>pursuit</code></td><td>One pursuit: each government and industry seat, who fills it, who owns it on the team, cold seats, suggestions for empty seats, the win chance and the warmest ways in.</td></tr>
+    <tr><td><code>pipeline</code></td><td>Open value by stage, weighted by win chance, what’s due this quarter, and your win rate. Can include teammates’ pursuits.</td></tr>
+    <tr><td><code>cold_seats</code></td><td>Seats on pursuits due soon where you haven’t been in touch for 60 days or more.</td></tr>
+    <tr><td><code>call_plan</code></td><td>Facts and a short plan before a call: goal, opener, questions, next step.</td></tr>
+    <tr><td><code>recompetes</code></td><td>Contracts ending soon at your agencies, from USASpending.gov: incumbent, value, end date, and who you know at the agency and the incumbent. The next 24 months unless you say otherwise.</td></tr>
+    <tr><td><code>teaming_partners</code></td><td>Companies that win work at an agency, from USASpending.gov, with who you and your team know at each.</td></tr>
+  </tbody>
+</table>
+
+<h3>Saving notes</h3>
+<table class="doc-table fit">
+  <thead><tr><th>Tool</th><th>What it does</th></tr></thead>
+  <tbody>
+    <tr><td><code>log_note</code></td><td>Saves a dated note on a person, only when you ask. Northfix files it on the right person the next time it opens on your Mac.</td></tr>
+  </tbody>
+</table>
 
 <h2 id="examples">Things to ask</h2>
 <ul>
@@ -64,53 +163,45 @@
   <li>“Who in my network changed jobs in the last 30 days?”</li>
   <li>“How well am I covered at the Department of Energy? Where are the gaps?”</li>
   <li>“Where do we stand on the NAVFAC pursuit? Which seats are empty?”</li>
-  <li>“Tell me about Dana Whitfield before my call. What did I note last time?”</li>
+  <li>“Which DISA contracts end in the next year, and who do I know at the incumbents?”</li>
+  <li>“Who wins work at NAVFAC that I could team with?”</li>
+  <li>“What’s my weighted pipeline this quarter?”</li>
+  <li>“Give me a call plan for the DISA contracting officer.”</li>
+  <li>“Save a note on Dana: wants the zero trust brief by Friday.”</li>
 </ul>
 
 <h2 id="privacy">Privacy</h2>
 <ul>
-  <li><b>Answered on your Mac.</b> The helper reads your Northfix files on your Mac and works out each answer there, with the same engine the apps use.</li>
-  <li><b>Nothing is sent to Northfix.</b> There’s no Northfix server involved, no account and no analytics. The helper makes no internet connections at all.</li>
-  <li><b>Your AI tool sees only the answers to questions you ask.</b> It never gets your whole network. What it does with an answer is up to that app’s own privacy policy. For example, Claude Desktop sends your chat, including these answers, to Anthropic so Claude can reply.</li>
-  <li><b>Read-only.</b> It never changes your network, notes or follow-ups.</li>
+  <li><b>Answered on your Mac.</b> The connector reads your Northfix files on your Mac and works out each answer there.</li>
+  <li><b>Nothing goes to Northfix.</b> There’s no Northfix server involved, no account and no analytics.</li>
+  <li><b>Only agency names go to USASpending.gov.</b> <code>recompetes</code> and <code>teaming_partners</code> ask USASpending.gov, the government’s public spending site, for contract awards. The request holds the agency name and dates, never anyone from your network. Every other tool makes no internet connections at all.</li>
+  <li><b>Your AI app sees only the answers to questions you ask.</b> It never gets your whole network. What it does with an answer is up to that app’s own privacy policy. For example, Claude Desktop sends your chat, including these answers, to Anthropic so Claude can reply.</li>
+  <li><b>Read-only, except notes you ask to save.</b> It never changes your network, notes or follow-ups. A note you ask it to save waits in a small file in your Northfix folder until the app files it, then the file is deleted.</li>
 </ul>
 <p>More in the <a href="privacy.html">privacy policy</a>.</p>
 
-<h2 id="setup">Set it up</h2>
-<h3>Claude Desktop</h3>
-<ol>
-  <li>Open Northfix on your Mac once, with iCloud Drive on, so your network is there.</li>
-  <li><a href="downloads/northfix.mcpb" download>Download northfix.mcpb</a> and double-click it.</li>
-  <li>Claude Desktop asks to install the Northfix extension. Click Install.</li>
-  <li>Start a new chat and ask “Who do I know at DISA?”</li>
-</ol>
-
-<h3>Cursor and other AI apps</h3>
-<ol>
-  <li>Install <a href="https://nodejs.org">Node.js</a> 18 or later if you don’t have it.</li>
-  <li><a href="downloads/northfix-mcp.mjs" download>Download northfix-mcp.mjs</a> and move it somewhere it can stay, such as a Northfix folder in Applications.</li>
-  <li>Add it as a local MCP server in your app’s settings. In Cursor, that’s <code>~/.cursor/mcp.json</code>:</li>
-</ol>
-<pre style="background:var(--paper-2);padding:14px 16px;border-radius:10px;overflow-x:auto;line-height:1.5"><code style="background:none;padding:0;font:.85em/1.5 ui-monospace,SFMono-Regular,Menlo,monospace">{
-  "mcpServers": {
-    "northfix": {
-      "command": "node",
-      "args": ["/Users/you/Applications/Northfix/northfix-mcp.mjs"]
-    }
-  }
-}</code></pre>
-<p>The same lines work in Claude Desktop’s <code>claude_desktop_config.json</code> and in any app that can start a local MCP server. If the app can’t find <code>node</code>, use its full path, such as <code>/opt/homebrew/bin/node</code>. Some AI apps only connect to servers on the internet. This one stays on your Mac on purpose, so it needs an app that supports local servers.</p>
-
 <h2 id="pro">Free and Pro</h2>
-<p>With Northfix Pro, or a seat on Northfix Team, ask as much as you like. On the free plan you get a summary of your network any time, plus three other questions a day. Upgrade in the app: open Northfix, go to You, then Northfix Pro. The app lets the helper know you have Pro through a small file in your iCloud Drive, so Pro bought on your iPhone counts on your Mac.</p>
+<p>With Northfix Pro, or a seat on Northfix Team, ask as much as you like. On the free plan you get a network summary any time, plus three other questions a day. Upgrade in the app: open Northfix, go to You, then Northfix Pro. The app tells the connector you have Pro through a small file in your iCloud Drive, so Pro bought on your iPhone counts on your Mac. <a href="pricing.html">See pricing</a>.</p>
 
-<h2 id="faq">Common questions</h2>
+<h2 id="troubleshooting">Troubleshooting</h2>
 <h3>It says it can’t find my network.</h3>
 <p>Open Northfix on the same Mac and leave it open for a minute so iCloud can download your network. Check that iCloud Drive is on in System Settings. Then ask again.</p>
+<h3>Claude doesn’t use the Northfix tools.</h3>
+<p>Check that Northfix shows as on in Claude Desktop’s Settings, under Extensions. Start a new chat after installing. Naming it helps too: “Using Northfix, who do I know at DISA?”</p>
+<h3>Claude says the server failed to start.</h3>
+<p>With the config file setup, Claude couldn’t run <code>node</code>. Put the full path to <code>node</code> in <code>command</code>, check the path to <code>northfix-mcp.mjs</code>, and reopen Claude Desktop. Node.js needs to be version 18 or later.</p>
+<h3>A note I saved isn’t in the app.</h3>
+<p>Notes are filed the next time Northfix opens on that Mac. Open it, and the note is filed on the person it names.</p>
+<h3>Recompetes or teaming partners come back empty.</h3>
+<p>Those two need an internet connection to reach USASpending.gov. When you don’t name an agency, recompetes looks at your watchlist and open pursuits, so name one if those are empty: “recompetes at DISA”.</p>
+
+<h2 id="faq">Common questions</h2>
 <h3>Does it see my LinkedIn messages?</h3>
 <p>Only what Northfix already has from your LinkedIn data download, and only to answer the question asked, such as when someone last wrote to you.</p>
 <h3>Does it work on Windows or Android?</h3>
 <p>Not yet. It reads the files the Mac, iPhone and iPad apps keep in iCloud Drive.</p>
+<h3>Can my whole team use it?</h3>
+<p>Yes. Each person runs it on their own Mac, against their own network. Teammates’ contacts show up in ways in and pipeline answers when you’re on a Northfix Team.</p>
 <h3>Questions?</h3>
 <p>Email <a href="mailto:hello@northfix.app?subject=Northfix%20for%20AI%20tools">hello@northfix.app</a>.</p>
 
@@ -120,8 +211,10 @@
   <div class="wrap foot-inner">
     <a class="brand" href="index.html"><img src="img/northfix-icon.svg" alt="" width="26" height="26"><span>Northfix</span></a>
     <nav aria-label="Footer">
+      <a href="federal.html">Federal</a>
       <a href="team.html">Team</a>
       <a href="ai.html">AI tools</a>
+      <a href="pricing.html">Pricing</a>
       <a href="support.html">Support</a>
       <a href="privacy.html">Privacy</a>
       <a href="terms.html">Terms</a>
