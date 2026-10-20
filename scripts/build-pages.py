@@ -21,18 +21,33 @@ price = cfg.get('teamPrice', '').strip()
 today = date.today().isoformat()
 
 PAGES = [
-    # file, title, subtitle, description
+    # file, heading, subtitle, page title (for search results and shares), description
     ('team', 'Northfix Team', 'Your whole team’s network. Still private.',
-     'Pool who your business development team knows, end-to-end encrypted. Ways in through every teammate, the team federal map, team pursuits and the team watchlist.'),
+     'Northfix Team: an encrypted network map for BD and capture teams',
+     'Pool who your BD or capture team knows, end-to-end encrypted: ways in through every teammate, the team federal map, pursuits, pipeline and watchlist.'),
     ('ai', 'Northfix for AI tools', 'Ask your AI about your own network. Answered on your Mac.',
-     'Let Claude, Cursor and other AI apps answer questions about your own network: who you know at an agency, your warmest way in, who is waiting on you. Answered on your Mac; nothing goes to Northfix.'),
+     'Northfix for AI tools: connect Claude to your network',
+     'Set up the Northfix connector for Claude Desktop, Cursor and other MCP apps. Ask about your own network. It runs on your Mac; nothing goes to Northfix.'),
     ('support', 'Support', 'Answers, and how to reach us.',
+     'Northfix support and help',
      'Help with Northfix: getting your LinkedIn data, syncing, email, calendar and trips, the federal map, SAM.gov notices, Northfix Team, purchases and Android.'),
     ('privacy', 'Privacy Policy', 'Northfix can’t see your network. Here’s exactly what it touches.',
+     'Privacy Policy: Northfix',
      'How Northfix handles your data: on your devices and in your own iCloud, with team shares encrypted before they leave.'),
     ('terms', 'Terms of Service', 'The agreement for using Northfix.',
+     'Terms of Service: Northfix',
      'Terms of service for the Northfix apps, Northfix Pro, Northfix Team and this website.'),
+    ('federal', 'Northfix for federal BD and capture', 'Who you know at every agency. Who decides each bid. Who can get you in.',
+     'Northfix for federal BD and capture: agencies, pursuits, recompetes',
+     'A private relationship map for federal BD and capture: coverage across 160 agencies, pursuit seats, recompetes, teaming partners and SAM.gov notices.'),
+    ('pricing', 'Pricing', 'Free to start. Pro for you. Team for the whole shop.',
+     'Northfix pricing: Free, Pro and Team plans',
+     'Northfix is free to start. Pro is $19.99 a month, $99.99 a year or $249.99 once. Team is $49 per person per month, billed yearly, 30 days free.'),
 ]
+# pages in the main nav, in order: (file or home anchor, label)
+NAV_LINKS = [('index.html#today', 'Features'), ('federal', 'Federal'), ('team', 'Team'), ('ai', 'AI tools'),
+             ('pricing', 'Pricing'), ('index.html#demo', 'Live demo'), ('support', 'Support')]
+OG_IMAGE_ALT = 'Northfix: a private map of your professional network.'
 
 def fill(text):
     line = (f'Northfix Team is {price}.' if price else 'Northfix Team is priced per person and billed yearly, with a 30-day free trial for up to 5 people.')
@@ -40,17 +55,19 @@ def fill(text):
                 .replace('{{appStoreUrl}}', html.escape(store or 'index.html#get'))
                 .replace('{{teamPriceLine}}', line))
 
-NAV = '''<header class="nav solid" id="nav">
+def nav(current=''):
+    def link(h, label):
+        href = h if '.html' in h else f'{h}.html'
+        cur = ' aria-current="page"' if h == current else ''
+        return f'    <a href="{href}"{cur}>{label}</a>'
+    links = '\n'.join(link(h, label) for h, label in NAV_LINKS)
+    return f'''<header class="nav solid" id="nav">
   <a class="brand" href="index.html" aria-label="Northfix home">
     <img src="img/northfix-icon.svg" alt="" width="30" height="30">
     <span>Northfix</span>
   </a>
   <nav aria-label="Sections">
-    <a href="index.html#today">Features</a>
-    <a href="team.html"{team}>Team</a>
-    <a href="ai.html"{ai}>AI tools</a>
-    <a href="index.html#demo">Live demo</a>
-    <a href="support.html"{support}>Support</a>
+{links}
   </nav>
   <a class="btn btn-small" href="index.html#get">Get Northfix</a>
 </header>'''
@@ -59,8 +76,10 @@ FOOTER = '''<footer class="foot">
   <div class="wrap foot-inner">
     <a class="brand" href="index.html"><img src="img/northfix-icon.svg" alt="" width="26" height="26"><span>Northfix</span></a>
     <nav aria-label="Footer">
+      <a href="federal.html">Federal</a>
       <a href="team.html">Team</a>
       <a href="ai.html">AI tools</a>
+      <a href="pricing.html">Pricing</a>
       <a href="support.html">Support</a>
       <a href="privacy.html">Privacy</a>
       <a href="terms.html">Terms</a>
@@ -70,7 +89,42 @@ FOOTER = '''<footer class="foot">
   </div>
 </footer>'''
 
-def head(title, desc, path):
+# Prices, for structured data. The pages say the same in words; keep both in step with docs/pricing.md in the app repo.
+OFFERS = [('Northfix', '0', None), ('Northfix Pro, monthly', '19.99', 'MON'), ('Northfix Pro, yearly', '99.99', 'ANN'),
+          ('Northfix Pro, lifetime', '249.99', None), ('Northfix Team, per person, billed yearly', '588', 'ANN')]
+
+def app_ld(desc):
+    def offer(name, amount, unit):
+        o = {'@type': 'Offer', 'name': name, 'price': amount, 'priceCurrency': 'USD', 'url': f'{base}/pricing.html'}
+        if unit: o['priceSpecification'] = {'@type': 'UnitPriceSpecification', 'price': amount, 'priceCurrency': 'USD', 'billingDuration': 1, 'unitCode': unit}
+        return o
+    return {'@context': 'https://schema.org', '@type': 'SoftwareApplication', 'name': 'Northfix',
+            'applicationCategory': 'BusinessApplication', 'operatingSystem': 'iOS, iPadOS, macOS, watchOS, Android',
+            'description': desc, 'url': f'{base}/', 'image': f'{base}/media/og.jpg',
+            'offers': [offer(*o) for o in OFFERS], 'author': {'@type': 'Person', 'name': 'Jay Nichols'}}
+
+def ld_script(data):
+    return f'<script type="application/ld+json">{json.dumps(data, ensure_ascii=False)}</script>'
+
+def share_tags(title, desc, url):
+    """Open Graph and X/Twitter tags, shared by every page."""
+    t, d = html.escape(title), html.escape(desc)
+    return f'''<meta property="og:site_name" content="Northfix">
+<meta property="og:locale" content="en_US">
+<meta property="og:title" content="{t}">
+<meta property="og:description" content="{d}">
+<meta property="og:image" content="{base}/media/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="{html.escape(OG_IMAGE_ALT)}">
+<meta property="og:url" content="{url}">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{t}">
+<meta name="twitter:description" content="{d}">
+<meta name="twitter:image" content="{base}/media/og.jpg">'''
+
+def head(title, desc, path, extra=''):
     url = f'{base}/{path}' if path else f'{base}/'
     return f'''<!doctype html>
 <html lang="en">
@@ -81,30 +135,30 @@ def head(title, desc, path):
 <meta name="description" content="{html.escape(desc)}">
 <link rel="canonical" href="{url}">
 <meta name="theme-color" content="#0D0A17">
-<meta property="og:title" content="{html.escape(title)}">
-<meta property="og:description" content="{html.escape(desc)}">
-<meta property="og:image" content="{base}/media/og.jpg">
-<meta property="og:url" content="{url}">
-<meta property="og:type" content="website">
-<meta name="twitter:card" content="summary_large_image">
+{share_tags(title, desc, url)}
 <link rel="icon" href="img/northfix-icon.svg" type="image/svg+xml">
 <link rel="icon" href="img/favicon-64.png" sizes="64x64">
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="styles.css">{extra}
 </head>'''
 
-def page(name, title, sub, desc):
+WIDE = {'pricing'}  # pages laid out wider than reading width, for side-by-side plans
+
+def page(name, heading, sub, title, desc):
     body = fill((ROOT / 'content' / f'{name}.html').read_text())
-    full = title if name in ('team', 'ai') else f'{title}: Northfix'
-    cur = lambda n: ' aria-current="page"' if name == n else ''
-    nav = NAV.format(team=cur('team'), ai=cur('ai'), support=cur('support'))
-    return f'''{head(full, desc, f'{name}.html')}
+    crumbs = {'@context': 'https://schema.org', '@type': 'BreadcrumbList', 'itemListElement': [
+        {'@type': 'ListItem', 'position': 1, 'name': 'Northfix', 'item': f'{base}/'},
+        {'@type': 'ListItem', 'position': 2, 'name': heading, 'item': f'{base}/{name}.html'}]}
+    extra = '\n' + ld_script(crumbs)
+    if name == 'pricing': extra += '\n' + ld_script(app_ld(desc))
+    cls = 'doc doc-wide wrap' if name in WIDE else 'doc wrap'
+    return f'''{head(title, desc, f'{name}.html', extra)}
 <body class="subpage">
 <a class="skip" href="#main">Skip to content</a>
-{nav}
+{nav(name)}
 <main id="main">
-<section class="page-hero night"><div class="wrap"><h1>{html.escape(title)}</h1><p>{html.escape(sub)}</p></div></section>
-<article class="doc wrap">
+<section class="page-hero night"><div class="wrap"><h1>{html.escape(heading)}</h1><p>{html.escape(sub)}</p></div></section>
+<article class="{cls}">
 {body}
 </article>
 </main>
@@ -113,13 +167,13 @@ def page(name, title, sub, desc):
 </html>
 '''
 
-for name, title, sub, desc in PAGES:
-    (ROOT / f'{name}.html').write_text(page(name, title, sub, desc))
+for name, *rest in PAGES:
+    (ROOT / f'{name}.html').write_text(page(name, *rest))
 
 # 404: GitHub Pages and Cloudflare Pages both serve 404.html for missing paths
-nf = f'''{head('Page not found: Northfix', 'That page isn’t here.', '404.html')}
+nf = f'''{head('Page not found: Northfix', 'That page isn’t here.', '404.html', chr(10) + '<meta name="robots" content="noindex">')}
 <body class="subpage">
-{NAV.format(team='', ai='', support='')}
+{nav()}
 <main id="main">
 <section class="page-hero night lost"><div class="wrap"><h1>Off course?</h1><p>That page isn’t here. It may have moved, or the link may have a typo.</p>
 <div class="cta-row"><a class="btn" href="index.html">Go to the home page</a><a class="btn btn-ghost" href="support.html">Get help</a></div></div></section>
@@ -134,23 +188,18 @@ root_path = '/' if domain else '/' + base.split('/', 3)[3].strip('/') + '/'
 
 # index.html: everything between the BUILD markers is regenerated
 idx = (ROOT / 'index.html').read_text()
-ld = {
-    '@context': 'https://schema.org', '@type': 'SoftwareApplication', 'name': 'Northfix',
-    'applicationCategory': 'BusinessApplication', 'operatingSystem': 'iOS, iPadOS, macOS, watchOS, Android',
-    'description': 'A private map of your professional network: who is waiting on you, who changed jobs, and your warmest way into any agency or company.',
-    'url': f'{base}/', 'image': f'{base}/media/og.jpg',
-    'offers': [{'@type': 'Offer', 'price': '0', 'priceCurrency': 'USD', 'name': 'Northfix'},
-               {'@type': 'Offer', 'price': '99.99', 'priceCurrency': 'USD', 'name': 'Northfix Pro, yearly'}],
-    'author': {'@type': 'Person', 'name': 'Jay Nichols'},
-}
+home_title = html.unescape(re.search(r'<title>(.*?)</title>', idx).group(1))
+home_desc = html.unescape(re.search(r'<meta name="description" content="([^"]*)">', idx).group(1))
+# the home page's own share tags are written here, so drop any hand-written copies outside the block
+idx = re.sub(r'<meta (property="og:(title|description|type)"|name="twitter:card") content="[^"]*">\n(?=(?:(?!<!-- /BUILD:head -->).)*<!-- BUILD:head -->)', '', idx, flags=re.S)
+site_ld = {'@context': 'https://schema.org', '@type': 'WebSite', 'name': 'Northfix', 'url': f'{base}/'}
 meta = f'''<!-- BUILD:head -->
 <link rel="canonical" href="{base}/">
-<meta property="og:url" content="{base}/">
-<meta property="og:image" content="{base}/media/og.jpg">
-<script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>
+{share_tags(home_title, home_desc, f'{base}/')}
+{ld_script(app_ld('A private map of your professional network: who is waiting on you, who changed jobs, and your warmest way into any agency or company.'))}
+{ld_script(site_ld)}
 <!-- /BUILD:head -->'''
 idx = re.sub(r'<!-- BUILD:head -->.*?<!-- /BUILD:head -->', meta, idx, flags=re.S) if '<!-- BUILD:head -->' in idx else idx.replace('<link rel="stylesheet" href="styles.css">', meta + '\n<link rel="stylesheet" href="styles.css">')
-idx = re.sub(r'<meta property="og:image" content="https://[^"]*/media/og\.jpg">\n(?!<script)', '', idx)
 btn = (f'<a class="btn" id="storeLink" href="{html.escape(store)}">Download on the App Store</a>' if store
        else f'<a class="btn" id="storeLink" href="mailto:{email}?subject=Tell%20me%20when%20Northfix%20launches">Email me when it launches</a>')
 idx = re.sub(r'<a class="btn" id="storeLink"[^>]*>[^<]*</a>', btn, idx)
@@ -158,7 +207,7 @@ idx = re.sub(r'<footer class="foot">.*?</footer>', FOOTER.format(email=email), i
 idx = idx.replace('href="https://www.jaynichols.net/bearings/privacy.html"', 'href="privacy.html"')
 (ROOT / 'index.html').write_text(idx)
 
-urls = [''] + [f'{n}.html' for n, *_ in PAGES]
+urls = [''] + [f'{n}.html' for n, *_ in PAGES]  # 404 stays out
 (ROOT / 'sitemap.xml').write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
     + ''.join(f'  <url><loc>{base}/{u}</loc><lastmod>{today}</lastmod></url>\n' for u in urls) + '</urlset>\n')
 (ROOT / 'robots.txt').write_text(f'User-agent: *\nAllow: /\nDisallow: /demo/\n\nSitemap: {base}/sitemap.xml\n')

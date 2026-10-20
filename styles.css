@@ -459,3 +459,22 @@ kbd { display: inline-block; min-width: 40px; text-align: center; font: 600 .812
 .doc-table td:first-child { width: 50%; }
 @media (max-width: 560px) { .doc-table { font-size: .875rem; } .doc-table th, .doc-table td { padding: 8px 6px; } }
 .nav a[aria-current="page"] { color: var(--star); }
+
+/* ---------- pricing, federal and AI docs pages ---------- */
+.doc-table.fit td:first-child { width: auto; white-space: nowrap; }
+.doc pre { background: var(--paper-2); padding: 14px 16px; border-radius: 10px; overflow-x: auto; line-height: 1.5; margin: 0 0 1em; }
+.doc pre code { background: none; padding: 0; font: .85em/1.5 ui-monospace, SFMono-Regular, Menlo, monospace; }
+.doc-wide { max-width: var(--maxw); }
+.doc-narrow { max-width: 780px; margin: 0 auto; }
+.doc-wide > .lede-doc, .doc-wide > .cta-row { max-width: 780px; margin-left: auto; margin-right: auto; }
+.doc-wide > .lede-doc { margin-bottom: 36px; }
+.doc .plans-doc { margin: 0 auto 8px; }
+.doc .plan h2 { font-family: var(--serif); font-size: var(--t-xl); font-weight: 600; margin: 0; }
+.doc .plan-pro h2, .doc .plan-pro .plan-amount { color: var(--star); }
+.doc .plan-amount { font-family: var(--serif); font-size: 1.6rem; font-weight: 500; color: var(--ink); margin: 10px 0 4px; }
+.doc .plan-pro li { color: #D8D3EC; }
+.doc .plan li { max-width: none; margin-bottom: 0; }
+.doc-figs { display: flex; flex-wrap: wrap; justify-content: center; gap: 28px; margin: 36px 0 8px; }
+.doc-figs .phone { width: min(100%, 250px); }
+.doc :not(pre) > code { overflow-wrap: anywhere; }
+.doc-narrow > h2:first-child { margin-top: 1.6em; }
