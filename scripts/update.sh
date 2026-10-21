@@ -6,7 +6,7 @@ APP=${1:?path to the Network-Order-of-Battle checkout}
 SITE=$(cd "$(dirname "$0")/.." && pwd)
 
 (cd "$APP" && npm run build >/dev/null)
-cp "$APP/apple/Bearings/Resources/engine.js" "$SITE/js/engine.js"
+cp "$APP/apple/Northfix/Resources/engine.js" "$SITE/js/engine.js"
 rm -rf "$SITE/demo" && mkdir -p "$SITE/demo" && cp -r "$APP/www/." "$SITE/demo/"
 
 TMP=$(mktemp -d)
