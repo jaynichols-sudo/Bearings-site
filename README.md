@@ -41,7 +41,7 @@ The hero compass, Today's five, Ask, the federal map and the team overview all r
 The videos and screenshots are recorded from the real iOS app by the **Northfix site media** workflow in the app repo, which publishes them to its `site-media` branch. To refresh everything after an app change:
 
 ```sh
-./scripts/update.sh /path/to/Network-Order-of-Battle
+./scripts/update.sh /path/to/Northfix
 ```
 
 ## Going live on your own domain

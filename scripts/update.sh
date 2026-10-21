@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 # Refresh the engine, the web demo and the media from the app repo.
-# Usage: ./scripts/update.sh /path/to/Network-Order-of-Battle
+# Usage: ./scripts/update.sh /path/to/Northfix
 set -euo pipefail
-APP=${1:?path to the Network-Order-of-Battle checkout}
+APP=${1:?path to the Northfix app checkout}
 SITE=$(cd "$(dirname "$0")/.." && pwd)
 
 (cd "$APP" && npm run build >/dev/null)
-cp "$APP/apple/Bearings/Resources/engine.js" "$SITE/js/engine.js"
+cp "$APP/apple/Northfix/Resources/engine.js" "$SITE/js/engine.js"
 rm -rf "$SITE/demo" && mkdir -p "$SITE/demo" && cp -r "$APP/www/." "$SITE/demo/"
 
 TMP=$(mktemp -d)
