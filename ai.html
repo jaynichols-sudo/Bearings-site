@@ -152,6 +152,9 @@
   <thead><tr><th>Tool</th><th>What it does</th></tr></thead>
   <tbody>
     <tr><td><code>log_note</code></td><td>Saves a dated note on a person, only when you ask. Northfix files it on the right person the next time it opens on your Mac.</td></tr>
+    <tr><td><code>log_call</code></td><td>Logs a call with a person: a dated note, marked as contacted today, with an optional follow-up. Shows you a preview first and saves only after you say yes.</td></tr>
+    <tr><td><code>update_pursuit_stage</code></td><td>Moves a pursuit to a new stage, like Proposal or Won. Shows you a preview first and saves only after you say yes.</td></tr>
+    <tr><td><code>draft_follow_up</code></td><td>Drafts a short follow-up for you to send yourself. Northfix never sends it. It can also save a follow-up date, only after you say yes.</td></tr>
   </tbody>
 </table>
 
@@ -176,7 +179,7 @@
   <li><b>Nothing goes to Northfix.</b> There’s no Northfix server involved, no account and no analytics.</li>
   <li><b>Only agency names go to USASpending.gov.</b> <code>recompetes</code> and <code>teaming_partners</code> ask USASpending.gov, the government’s public spending site, for contract awards. The request holds the agency name and dates, never anyone from your network. Every other tool makes no internet connections at all.</li>
   <li><b>Your AI app sees only the answers to questions you ask.</b> It never gets your whole network. What it does with an answer is up to that app’s own privacy policy. For example, Claude Desktop sends your chat, including these answers, to Anthropic so Claude can reply.</li>
-  <li><b>Read-only, except notes you ask to save.</b> It never changes your network, notes or follow-ups. A note you ask it to save waits in a small file in your Northfix folder until the app files it, then the file is deleted.</li>
+  <li><b>Read-only, except changes you approve.</b> It never changes your network files directly. A note, call, follow-up or stage change you approve waits in a small file in your Northfix folder until the app files it, then the file is deleted. Nothing is ever sent to anyone.</li>
 </ul>
 <p>More in the <a href="privacy.html">privacy policy</a>.</p>
 
